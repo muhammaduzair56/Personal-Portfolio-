@@ -13,3 +13,7 @@
 - [ ] Confirm the deployed portfolio renders the portrait correctly.
 - [x] Replace all portfolio LinkedIn references with the newly provided profile URL.
 - [x] Push the LinkedIn profile update to GitHub for Vercel redeployment.
+- [ ] Add accurate SkillSense and The Burger House project entries using the supplied live sites.
+- [ ] Replace the portfolio email with uzairkhilji307@gmail.com.
+- [ ] Replace overclaimed skills with the user-verified development stack.
+- [ ] Push the portfolio content correction to GitHub for Vercel redeployment.

@@ -29,6 +29,24 @@ const navigation = [
 
 const projects = [
   {
+    category: "AI Career Platform",
+    title: "SkillSense",
+    description: "An AI-powered resume analysis and career builder that helps users strengthen their professional profile and make better career decisions.",
+    proof: "Focus: resume intelligence and career guidance",
+    technologies: ["Next.js", "TypeScript", "FastAPI", "Groq API", "Gemini API"],
+    repo: "",
+    live: "https://skillsensepk.vercel.app/",
+  },
+  {
+    category: "Interactive Frontend",
+    title: "The Burger House",
+    description: "A premium restaurant experience with cinematic storytelling, menu and ordering flows, and an interactive 3D burger showcase.",
+    proof: "Focus: 3D product interaction and motion-led storytelling",
+    technologies: ["React", "React Three Fiber", "GSAP", "Framer Motion"],
+    repo: "",
+    live: "https://premiumburger.vercel.app/",
+  },
+  {
     category: "Full Stack",
     title: "E-Commerce Platform",
     description: "A full-featured e-commerce platform with cart functionality, payment integration, and an admin dashboard.",
@@ -60,7 +78,7 @@ const projects = [
     title: "REST API Service",
     description: "A robust API service with authentication, rate limiting, and documentation built around scalable integration.",
     proof: "Focus: secure, documented integrations",
-    technologies: ["Node.js", "Express", "MongoDB", "JWT"],
+    technologies: ["Node.js", "Express", "PostgreSQL", "JWT"],
     repo: "https://github.com/ucdexpert/",
     live: "https://api-docs-demo.vercel.app",
   },
@@ -68,8 +86,8 @@ const projects = [
 
 const skillGroups = [
   { title: "Frontend", items: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"] },
-  { title: "Backend", items: ["Node.js", "Python", "FastAPI", "PostgreSQL", "MongoDB"] },
-  { title: "Tools & DevOps", items: ["Git", "Docker", "AWS", "CI/CD", "Linux", "Vercel"] },
+  { title: "AI & Backend", items: ["Python", "FastAPI", "PostgreSQL / NeonDB", "Groq API", "Gemini API"] },
+  { title: "Tools & Deployment", items: ["Git", "Docker", "Hugging Face Spaces", "Vercel"] },
 ];
 
 const experience = [
@@ -113,10 +131,10 @@ export default function Home() {
           {navigation.map(([label, href]) => (
             <a href={href} key={label} onClick={closeMenu}>{label}</a>
           ))}
-          <a className="nav-mobile-contact" href="mailto:hk202504@gmail.com" onClick={closeMenu}>Email me <ArrowUpRight size={15} /></a>
+          <a className="nav-mobile-contact" href="mailto:uzairkhilji307@gmail.com" onClick={closeMenu}>Email me <ArrowUpRight size={15} /></a>
         </nav>
 
-        <a className="header-cta" href="mailto:hk202504@gmail.com">Let&apos;s talk <ArrowUpRight size={15} /></a>
+        <a className="header-cta" href="mailto:uzairkhilji307@gmail.com">Let&apos;s talk <ArrowUpRight size={15} /></a>
         <button className="mobile-menu" type="button" aria-label="Toggle navigation" aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}>
           {menuOpen ? <X size={23} /> : <Menu size={24} />}
         </button>
@@ -130,7 +148,7 @@ export default function Home() {
             <p className="hero-lede">I&apos;m Muhammad Uzair, a Karachi-based developer who builds fast, useful web applications and practical AI-powered products.</p>
             <div className="hero-buttons">
               <a className="primary-button" href="#projects">View projects <ArrowRight size={17} /></a>
-              <a className="text-button" href="mailto:hk202504@gmail.com">Get in touch <ArrowUpRight size={16} /></a>
+              <a className="text-button" href="mailto:uzairkhilji307@gmail.com">Get in touch <ArrowUpRight size={16} /></a>
             </div>
             <div className="hero-links">
               <a href="https://github.com/ucdexpert" target="_blank" rel="noreferrer"><Github size={16} /> GitHub</a>
@@ -180,7 +198,7 @@ export default function Home() {
                 </div>
                 <div className="project-row-links">
                   <a href={project.live} target="_blank" rel="noreferrer">Live <ArrowUpRight size={16} /></a>
-                  <a href={project.repo} target="_blank" rel="noreferrer">Code <Github size={15} /></a>
+                  {project.repo && <a href={project.repo} target="_blank" rel="noreferrer">Code <Github size={15} /></a>}
                 </div>
               </article>
             ))}
@@ -198,7 +216,7 @@ export default function Home() {
               </article>
             ))}
           </div>
-          <p className="additional-skills">Also experienced with GraphQL, Redis, Elasticsearch, Kubernetes, Terraform, Jest, Cypress, Storybook, Figma, and Agile delivery.</p>
+          <p className="additional-skills">Focused on building polished web products, AI integrations, scalable APIs, and reliable cloud-ready deployments.</p>
         </section>
 
         <section className="experience-clean section-pad">
@@ -220,10 +238,10 @@ export default function Home() {
             <p>Have a role, product, or idea in mind? I&apos;d be happy to hear about it.</p>
           </div>
           <div className="contact-actions-clean">
-            <a className="email-big" href="mailto:hk202504@gmail.com">hk202504@gmail.com <ArrowUpRight size={22} /></a>
+            <a className="email-big" href="mailto:uzairkhilji307@gmail.com">uzairkhilji307@gmail.com <ArrowUpRight size={22} /></a>
             <a href="tel:+923170219387"><Phone size={17} /> +92 317 0219387</a>
             <a href="https://www.linkedin.com/in/muhammad-uzair-066733314" target="_blank" rel="noreferrer"><Linkedin size={17} /> LinkedIn profile</a>
-            <a href="mailto:hk202504@gmail.com?subject=Project%20Inquiry"><Send size={17} /> Send an inquiry</a>
+            <a href="mailto:uzairkhilji307@gmail.com?subject=Project%20Inquiry"><Send size={17} /> Send an inquiry</a>
           </div>
         </section>
       </main>
