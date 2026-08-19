@@ -134,7 +134,7 @@ export default function Home() {
             </div>
             <div className="hero-links">
               <a href="https://github.com/ucdexpert" target="_blank" rel="noreferrer"><Github size={16} /> GitHub</a>
-              <a href="https://www.linkedin.com/in/muhammad-uzair-9255433a0/" target="_blank" rel="noreferrer"><Linkedin size={16} /> LinkedIn</a>
+              <a href="https://www.linkedin.com/in/muhammad-uzair-066733314" target="_blank" rel="noreferrer"><Linkedin size={16} /> LinkedIn</a>
             </div>
           </div>
 
@@ -222,7 +222,7 @@ export default function Home() {
           <div className="contact-actions-clean">
             <a className="email-big" href="mailto:hk202504@gmail.com">hk202504@gmail.com <ArrowUpRight size={22} /></a>
             <a href="tel:+923170219387"><Phone size={17} /> +92 317 0219387</a>
-            <a href="https://www.linkedin.com/in/muhammad-uzair-9255433a0/" target="_blank" rel="noreferrer"><Linkedin size={17} /> LinkedIn profile</a>
+            <a href="https://www.linkedin.com/in/muhammad-uzair-066733314" target="_blank" rel="noreferrer"><Linkedin size={17} /> LinkedIn profile</a>
             <a href="mailto:hk202504@gmail.com?subject=Project%20Inquiry"><Send size={17} /> Send an inquiry</a>
           </div>
         </section>
