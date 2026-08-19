@@ -3,3 +3,6 @@
 - [x] Reframe the portrait for a full, natural mobile crop without face clipping or overlay collisions.
 - [x] Simplify the mobile header, spacing, type scale, project cards, and contact layout.
 - [x] Verify the revised experience at phone and desktop breakpoints before delivery.
+- [ ] Connect the user-created Personal-Portfolio- repository as the project remote.
+- [ ] Push the latest corrected mobile-first portfolio source to GitHub.
+- [ ] Confirm the remote repository contains the latest commit.
