@@ -1,4 +1,4 @@
-/** Signal / Systems design: dark default application shell for an editorial technical portfolio. */
+/** Clean professional portfolio: a light default shell for a clear, content-led developer profile. */
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Route, Switch } from "wouter";
@@ -20,11 +20,8 @@ function Router() {
 function App() {
   return (
     <ErrorBoundary>
-      <ThemeProvider defaultTheme="dark">
-        <TooltipProvider>
-          <Toaster />
-          <Router />
-        </TooltipProvider>
+      <ThemeProvider defaultTheme="light">
+        <TooltipProvider><Toaster /><Router /></TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>
   );

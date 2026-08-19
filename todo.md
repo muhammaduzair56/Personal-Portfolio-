@@ -1,0 +1,5 @@
+- [x] Replace the dense Signal / Systems theme with a cleaner, restrained professional portfolio style.
+- [x] Reorder the mobile hero so headline and call-to-action appear before the portrait.
+- [x] Reframe the portrait for a full, natural mobile crop without face clipping or overlay collisions.
+- [x] Simplify the mobile header, spacing, type scale, project cards, and contact layout.
+- [x] Verify the revised experience at phone and desktop breakpoints before delivery.

@@ -1,14 +1,13 @@
 /**
- * Signal / Systems design: editorial technical profile with ink surfaces, warm paper panels,
- * Signal Cobalt accents, offset composition, system labels, and concise evidence-led content.
+ * Clean professional portfolio: calm light surfaces, compact navy typography, one clear blue accent,
+ * and a mobile-first hero that always presents the message and CTA before the portrait.
  */
 import { useState } from "react";
 import {
-  ArrowDownRight,
+  ArrowRight,
   ArrowUpRight,
   BriefcaseBusiness,
   Code2,
-  ExternalLink,
   Github,
   Linkedin,
   Mail,
@@ -16,144 +15,86 @@ import {
   Menu,
   Phone,
   Send,
-  Sparkles,
   X,
 } from "lucide-react";
 
-const portraitUrl = "/manus-storage/muhammad-uzair-portrait-signal_72dd0b17.png";
-const aiImageUrl = "/manus-storage/ai-systems-abstract_9edf11ad.png";
-const systemImageUrl = "/manus-storage/software-architecture-detail_47f2fd59.png";
-const markUrl = "/manus-storage/mu-signal-mark_8ef06f56.png";
+const portraitUrl = "/manus-storage/muhammad-uzair-original-portrait_021ca8b9.png";
 
-const socialLinks = [
-  { label: "GitHub", href: "https://github.com/ucdexpert", icon: Github },
-  {
-    label: "LinkedIn",
-    href: "https://www.linkedin.com/in/muhammad-uzair-9255433a0/",
-    icon: Linkedin,
-  },
-  { label: "Email", href: "mailto:hk202504@gmail.com", icon: Mail },
-];
-
-const focusAreas = [
-  "Full-stack product engineering",
-  "LLM applications & AI workflows",
-  "Responsive interfaces & design systems",
-];
-
-const skills = [
-  {
-    index: "01",
-    title: "Frontend",
-    items: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
-  },
-  {
-    index: "02",
-    title: "Backend",
-    items: ["Node.js", "Python", "FastAPI", "PostgreSQL", "MongoDB"],
-  },
-  {
-    index: "03",
-    title: "Systems",
-    items: ["Docker", "AWS", "CI/CD", "Linux", "Vercel"],
-  },
+const navigation = [
+  ["About", "#about"],
+  ["Projects", "#projects"],
+  ["Skills", "#skills"],
+  ["Contact", "#contact"],
 ];
 
 const projects = [
   {
-    type: "Full Stack",
-    number: "01",
+    category: "Full Stack",
     title: "E-Commerce Platform",
-    summary:
-      "A full-featured commerce build with cart workflows, payment integration, and an administrative dashboard designed for production performance.",
-    stack: ["Next.js", "TypeScript", "Stripe", "PostgreSQL"],
+    description: "A full-featured e-commerce platform with cart functionality, payment integration, and an admin dashboard.",
+    proof: "Focus: payments, performance, and admin workflows",
+    technologies: ["Next.js", "TypeScript", "Stripe", "PostgreSQL"],
     repo: "https://github.com/ucdexpert/e-commerce",
     live: "https://e-commerce-mu-wheat-87.vercel.app/",
-    color: "cobalt",
   },
   {
-    type: "Frontend",
-    number: "02",
+    category: "Frontend",
     title: "Task Management App",
-    summary:
-      "A collaborative task workspace focused on real-time updates, drag-and-drop planning, and focused team coordination.",
-    stack: ["React", "TypeScript", "Framer Motion", "Zustand"],
+    description: "A collaborative task workspace with real-time updates, drag-and-drop planning, and team collaboration.",
+    proof: "Focus: real-time collaboration and planning flows",
+    technologies: ["React", "TypeScript", "Framer Motion", "Zustand"],
     repo: "https://github.com/ucdexpert/final-repo-phase-3",
     live: "https://auto-task-manager.vercel.app/dashboard",
-    color: "paper",
   },
   {
-    type: "AI / Education",
-    number: "03",
+    category: "AI / Education",
     title: "Physical AI Textbook",
-    summary:
-      "An interactive Docusaurus learning platform with structured modules and an AI chatbot for contextual questions and answers.",
-    stack: ["Docusaurus", "React", "JavaScript", "AI Chatbot"],
+    description: "An interactive learning platform with structured modules and an AI chatbot for contextual questions and answers.",
+    proof: "Focus: AI-assisted learning and structured content",
+    technologies: ["Docusaurus", "React", "JavaScript", "AI Chatbot"],
     repo: "https://github.com/ucdexpert/physical-ai-textbook-frontend001-heckathon",
     live: "https://physical-ai-textbook-frontend001-he.vercel.app/",
-    color: "ink",
   },
   {
-    type: "Backend",
-    number: "04",
+    category: "Backend",
     title: "REST API Service",
-    summary:
-      "A scalable API service with authentication, rate limiting, and clear documentation designed around secure, dependable integration.",
-    stack: ["Node.js", "Express", "MongoDB", "JWT"],
+    description: "A robust API service with authentication, rate limiting, and documentation built around scalable integration.",
+    proof: "Focus: secure, documented integrations",
+    technologies: ["Node.js", "Express", "MongoDB", "JWT"],
     repo: "https://github.com/ucdexpert/",
     live: "https://api-docs-demo.vercel.app",
-    color: "warm",
   },
 ];
 
-const journey = [
+const skillGroups = [
+  { title: "Frontend", items: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"] },
+  { title: "Backend", items: ["Node.js", "Python", "FastAPI", "PostgreSQL", "MongoDB"] },
+  { title: "Tools & DevOps", items: ["Git", "Docker", "AWS", "CI/CD", "Linux", "Vercel"] },
+];
+
+const experience = [
   {
-    span: "2023 — Present",
-    kind: "Work",
-    title: "Full Stack Developer",
-    detail: "Self-employed / Freelance",
-    copy: "Building scalable applications with Next.js, TypeScript, Python, CI/CD, and LLM-based workflows.",
+    date: "2023 — Present",
+    role: "Full Stack Developer",
+    company: "Self-Employed / Freelance",
+    text: "Building scalable applications with Next.js, TypeScript, Python, CI/CD, and LLM-based workflows.",
   },
   {
-    span: "2023 — 2026",
-    kind: "Education",
-    title: "Diploma in Agentic AI",
-    detail: "Governor House IT Initiative · In progress",
-    copy: "Practical work in modern web technologies, LLM applications, agentic AI, automation, and real-world projects.",
+    date: "2023 — 2026",
+    role: "Diploma in Agentic AI",
+    company: "Governor House IT Initiative · In Progress",
+    text: "Practical study in web technologies, LLM applications, agentic AI, automation, and project delivery.",
   },
   {
-    span: "2019 — 2021",
-    kind: "Work",
-    title: "Frontend Developer",
-    detail: "StartUp Hub",
-    copy: "Developed responsive React and TypeScript applications, reusable interface systems, and agile delivery practices.",
+    date: "2019 — 2021",
+    role: "Frontend Developer",
+    company: "StartUp Hub",
+    text: "Created responsive React and TypeScript applications and reusable component systems in an agile environment.",
   },
 ];
 
-function SectionHeading({ number, eyebrow, title }: { number: string; eyebrow: string; title: string }) {
-  return (
-    <div className="section-heading">
-      <div className="section-index">
-        <span>{number}</span>
-        <i />
-        <span>{eyebrow}</span>
-      </div>
-      <h2>{title}</h2>
-    </div>
-  );
-}
-
-function ProjectActions({ repo, live }: { repo: string; live: string }) {
-  return (
-    <div className="project-actions">
-      <a href={live} target="_blank" rel="noreferrer" aria-label="Open live project">
-        Live site <ArrowUpRight size={16} />
-      </a>
-      <a href={repo} target="_blank" rel="noreferrer" aria-label="Open source repository">
-        Code <Github size={15} />
-      </a>
-    </div>
-  );
+function SectionLabel({ children }: { children: React.ReactNode }) {
+  return <p className="section-label"><span />{children}</p>;
 }
 
 export default function Home() {
@@ -161,223 +102,133 @@ export default function Home() {
   const closeMenu = () => setMenuOpen(false);
 
   return (
-    <div className="portfolio-shell">
-      <header className="site-header">
-        <a className="brand" href="#home" aria-label="Muhammad Uzair home">
-          <img src={markUrl} alt="MU signal mark" />
-          <span>
-            <strong>MU/01</strong>
-            <small>Muhammad Uzair</small>
-          </span>
+    <div className="clean-portfolio">
+      <header className="clean-header">
+        <a className="clean-brand" href="#home" onClick={closeMenu} aria-label="Muhammad Uzair home">
+          <span className="brand-mark" aria-hidden="true"><i>M</i><i>U</i></span>
+          <span className="brand-copy"><strong>MU/01</strong><small>Muhammad Uzair</small></span>
         </a>
 
-        <button
-          type="button"
-          className="menu-toggle"
-          aria-label={menuOpen ? "Close menu" : "Open menu"}
-          aria-expanded={menuOpen}
-          onClick={() => setMenuOpen((open) => !open)}
-        >
-          {menuOpen ? <X size={21} /> : <Menu size={22} />}
-        </button>
-
-        <nav className={menuOpen ? "main-nav nav-open" : "main-nav"} aria-label="Primary navigation">
-          {[
-            ["Profile", "#about"],
-            ["Work", "#work"],
-            ["Capabilities", "#capabilities"],
-            ["Contact", "#contact"],
-          ].map(([label, href], index) => (
-            <a href={href} onClick={closeMenu} key={label}>
-              <span>0{index + 1}</span>
-              {label}
-            </a>
+        <nav className={menuOpen ? "clean-nav open" : "clean-nav"} aria-label="Main navigation">
+          {navigation.map(([label, href]) => (
+            <a href={href} key={label} onClick={closeMenu}>{label}</a>
           ))}
+          <a className="nav-mobile-contact" href="mailto:hk202504@gmail.com" onClick={closeMenu}>Email me <ArrowUpRight size={15} /></a>
         </nav>
 
-        <a className="header-contact" href="mailto:hk202504@gmail.com">
-          Let&apos;s talk <ArrowUpRight size={15} />
-        </a>
+        <a className="header-cta" href="mailto:hk202504@gmail.com">Let&apos;s talk <ArrowUpRight size={15} /></a>
+        <button className="mobile-menu" type="button" aria-label="Toggle navigation" aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}>
+          {menuOpen ? <X size={23} /> : <Menu size={24} />}
+        </button>
       </header>
 
       <main>
-        <section id="home" className="hero-section">
-          <div className="hero-technical-grid" aria-hidden="true" />
-          <div className="hero-copy">
-            <div className="hero-eyebrow">
-              <span className="pulse-dot" />
-              Available for selected collaborations
+        <section id="home" className="clean-hero">
+          <div className="hero-copy-clean">
+            <p className="availability"><i /> Available for freelance and full-time opportunities</p>
+            <h1>Full Stack Developer <span>&amp;</span> AI Developer.</h1>
+            <p className="hero-lede">I&apos;m Muhammad Uzair, a Karachi-based developer who builds fast, useful web applications and practical AI-powered products.</p>
+            <div className="hero-buttons">
+              <a className="primary-button" href="#projects">View projects <ArrowRight size={17} /></a>
+              <a className="text-button" href="mailto:hk202504@gmail.com">Get in touch <ArrowUpRight size={16} /></a>
             </div>
-            <p className="hero-intro">Full Stack Developer · AI Developer · Karachi, Pakistan</p>
-            <h1>
-              Building digital
-              <em>systems</em> with intent.
-            </h1>
-            <p className="hero-summary">
-              I&apos;m Muhammad Uzair. I design and engineer web products and AI-enabled experiences that take ideas from interface to intelligent, dependable system.
-            </p>
-            <div className="hero-actions">
-              <a className="button button-primary" href="#work">
-                Explore selected work <ArrowDownRight size={18} />
-              </a>
-              <a className="button button-quiet" href="mailto:hk202504@gmail.com">
-                Write an email <Mail size={17} />
-              </a>
-            </div>
-            <div className="hero-socials">
-              {socialLinks.map(({ label, href, icon: Icon }) => (
-                <a href={href} target={label === "Email" ? undefined : "_blank"} rel="noreferrer" key={label}>
-                  <Icon size={15} />
-                  {label}
-                </a>
-              ))}
+            <div className="hero-links">
+              <a href="https://github.com/ucdexpert" target="_blank" rel="noreferrer"><Github size={16} /> GitHub</a>
+              <a href="https://www.linkedin.com/in/muhammad-uzair-9255433a0/" target="_blank" rel="noreferrer"><Linkedin size={16} /> LinkedIn</a>
             </div>
           </div>
 
-          <div className="hero-portrait-wrap">
-            <div className="portrait-measurements" aria-hidden="true">
-              <span>PROFILE / 2026</span>
-              <span>24.867° N · 67.010° E</span>
-            </div>
-            <div className="portrait-frame">
-              <img src={portraitUrl} alt="Muhammad Uzair, Full Stack and AI Developer" />
-              <div className="portrait-overlay" />
-            </div>
-            <div className="portrait-caption">
-              <span>MU</span>
-              <p>Systems thinking<br />with a human centre.</p>
-            </div>
-          </div>
-
-          <div className="hero-footnote">
-            <span>SCROLL TO EXPLORE</span>
-            <i />
-            <span>01 / 05</span>
-          </div>
+          <figure className="portrait-clean">
+            <div className="portrait-meta"><span>PROFILE / 2026</span><span>24.867° N · 67.010° E</span></div>
+            <div className="portrait-image-wrap"><img src={portraitUrl} alt="Muhammad Uzair, Full Stack Developer and AI Developer" /></div>
+            <figcaption><span>MU</span><p>Karachi, Pakistan<br />Open to work</p></figcaption>
+            <div className="portrait-signals"><span>WEB PRODUCTS</span><span>AI SYSTEMS</span></div>
+          </figure>
         </section>
 
-        <section id="about" className="intro-section section-paper">
-          <div className="intro-rail" aria-hidden="true"><span>01</span><i /></div>
-          <div className="intro-content">
-            <SectionHeading number="01" eyebrow="Profile" title="A builder at the intersection of product and intelligence." />
-            <div className="intro-body">
-              <p className="lead-copy">
-                I combine clean product interfaces with robust application logic to make useful digital tools. My work spans frontend systems, backend services, AI applications, and the deployment paths that make products reliable.
-              </p>
-              <div className="focus-list">
-                {focusAreas.map((area, index) => (
-                  <div key={area}>
-                    <span>0{index + 1}</span>
-                    <p>{area}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="profile-details">
-              <div><MapPin size={17} /><span>Based in</span><strong>Karachi, Pakistan</strong></div>
-              <div><BriefcaseBusiness size={17} /><span>Availability</span><strong>Open to work</strong></div>
-              <div><Sparkles size={17} /><span>Focus</span><strong>Web + AI systems</strong></div>
+        <section id="about" className="about-clean section-pad">
+          <div className="section-title-block">
+            <SectionLabel>About me</SectionLabel>
+            <h2>I build products that are clear, reliable, and ready to grow.</h2>
+          </div>
+          <div className="about-copy">
+            <p>I work across the frontend and backend to turn product ideas into complete digital experiences. I also build AI-powered applications, including chatbots, LLM integrations, and interactive tools.</p>
+            <p>My approach is simple: understand the problem, create an intuitive interface, then build dependable technology behind it.</p>
+            <div className="quick-facts">
+              <div><MapPin size={18} /><span>Based in</span><strong>Karachi, Pakistan</strong></div>
+              <div><BriefcaseBusiness size={18} /><span>Availability</span><strong>Open to work</strong></div>
+              <div><Code2 size={18} /><span>Specialty</span><strong>Web &amp; AI products</strong></div>
             </div>
           </div>
         </section>
 
-        <section id="work" className="work-section section-ink">
-          <div className="work-heading-wrap">
-            <SectionHeading number="02" eyebrow="Selected work" title="Built to move ideas into the real world." />
-            <p>Recent work across commerce, collaboration, education, and backend services.</p>
+        <section id="projects" className="projects-clean section-pad">
+          <div className="section-intro-row">
+            <div className="section-title-block"><SectionLabel>Selected projects</SectionLabel><h2>Recent work.</h2></div>
+            <p>Projects across commerce, collaboration, AI learning, and backend infrastructure.</p>
           </div>
-
-          <div className="featured-project">
-            <div className="featured-art">
-              <img src={aiImageUrl} alt="Abstract signal system representing AI-enabled development" />
-              <span className="art-corner corner-one" />
-              <span className="art-corner corner-two" />
-            </div>
-            <div className="featured-content">
-              <div className="project-meta"><span>01 / FULL STACK</span><span>COMMERCE</span></div>
-              <h3>E-Commerce<br /><em>Platform</em></h3>
-              <p>A complete buying experience designed around performance, payments, and clear management workflows.</p>
-              <div className="stack-list">{projects[0].stack.map((tag) => <span key={tag}>{tag}</span>)}</div>
-              <ProjectActions repo={projects[0].repo} live={projects[0].live} />
-            </div>
-          </div>
-
-          <div className="project-grid">
-            {projects.slice(1).map((project) => (
-              <article className={`project-card project-${project.color}`} key={project.title}>
-                <div className="card-topline">
-                  <span>{project.number} / {project.type}</span>
-                  <Code2 size={17} />
+          <div className="projects-list">
+            {projects.map((project, index) => (
+              <article className="project-row" key={project.title}>
+                <span className="project-number">0{index + 1}</span>
+                <div className="project-main">
+                  <p className="project-category">{project.category}</p>
+                  <h3>{project.title}</h3>
+                  <p className="project-description">{project.description}</p>
+                  <p className="project-proof">{project.proof}</p>
+                  <div className="technology-tags">{project.technologies.map((item) => <span key={item}>{item}</span>)}</div>
                 </div>
-                <h3>{project.title}</h3>
-                <p>{project.summary}</p>
-                <div className="stack-list">{project.stack.map((tag) => <span key={tag}>{tag}</span>)}</div>
-                <ProjectActions repo={project.repo} live={project.live} />
+                <div className="project-row-links">
+                  <a href={project.live} target="_blank" rel="noreferrer">Live <ArrowUpRight size={16} /></a>
+                  <a href={project.repo} target="_blank" rel="noreferrer">Code <Github size={15} /></a>
+                </div>
               </article>
             ))}
           </div>
-          <a className="github-line" href="https://github.com/ucdexpert" target="_blank" rel="noreferrer">
-            <span>For additional builds, visit the source archive</span>
-            <span>GitHub / ucdexpert <ArrowUpRight size={16} /></span>
-          </a>
+          <a className="all-projects" href="https://github.com/ucdexpert" target="_blank" rel="noreferrer">See more work on GitHub <ArrowUpRight size={17} /></a>
         </section>
 
-        <section id="capabilities" className="capabilities-section section-paper">
-          <div className="capability-image">
-            <img src={systemImageUrl} alt="Technical system architecture represented as a tactile workspace" />
-            <div><span>CAPABILITY MAP</span><strong>03 / 03</strong></div>
+        <section id="skills" className="skills-clean section-pad">
+          <div className="section-title-block"><SectionLabel>Capabilities</SectionLabel><h2>A practical stack for modern products.</h2></div>
+          <div className="skills-grid">
+            {skillGroups.map((group) => (
+              <article className="skill-card-clean" key={group.title}>
+                <h3>{group.title}</h3>
+                <div>{group.items.map((item) => <span key={item}>{item}</span>)}</div>
+              </article>
+            ))}
           </div>
-          <div className="capabilities-content">
-            <SectionHeading number="03" eyebrow="Capabilities" title="A practical stack, applied across the product lifecycle." />
-            <div className="skill-groups">
-              {skills.map((group) => (
-                <article key={group.title} className="skill-group">
-                  <div className="skill-group-title"><span>{group.index}</span><h3>{group.title}</h3></div>
-                  <div>{group.items.map((skill) => <span className="skill-token" key={skill}>{skill}</span>)}</div>
-                </article>
-              ))}
-            </div>
-            <p className="tool-note">Also experienced with GraphQL, Redis, Elasticsearch, Kubernetes, Terraform, Jest, Cypress, Storybook, Figma, and Agile delivery.</p>
-          </div>
+          <p className="additional-skills">Also experienced with GraphQL, Redis, Elasticsearch, Kubernetes, Terraform, Jest, Cypress, Storybook, Figma, and Agile delivery.</p>
         </section>
 
-        <section className="journey-section">
-          <div className="journey-heading">
-            <SectionHeading number="04" eyebrow="Trajectory" title="Learning fast. Building with care." />
-            <p>Work and education that shaped a practice grounded in craft, momentum, and continuous learning.</p>
-          </div>
-          <div className="timeline">
-            {journey.map((item, index) => (
-              <article className="timeline-item" key={item.title}>
-                <div className="timeline-marker"><span>{String(index + 1).padStart(2, "0")}</span></div>
-                <div className="timeline-time"><span>{item.kind}</span><strong>{item.span}</strong></div>
-                <div className="timeline-copy"><h3>{item.title}</h3><p className="timeline-detail">{item.detail}</p><p>{item.copy}</p></div>
+        <section className="experience-clean section-pad">
+          <div className="section-title-block"><SectionLabel>Experience &amp; education</SectionLabel><h2>Growing through hands-on work.</h2></div>
+          <div className="experience-list">
+            {experience.map((item) => (
+              <article key={item.role}>
+                <p className="experience-date">{item.date}</p>
+                <div><h3>{item.role}</h3><strong>{item.company}</strong><p>{item.text}</p></div>
               </article>
             ))}
           </div>
         </section>
 
-        <section id="contact" className="contact-section section-ink">
-          <div className="contact-topline"><span>05 / CONTACT</span><span>AVAILABLE FOR SELECTED COLLABORATIONS</span></div>
-          <div className="contact-grid">
-            <div>
-              <p className="contact-kicker">Have a product problem worth solving?</p>
-              <h2>Let&apos;s map<br />the <em>build.</em></h2>
-            </div>
-            <div className="contact-details">
-              <a href="mailto:hk202504@gmail.com"><Mail size={18} /><span>EMAIL</span><strong>hk202504@gmail.com</strong><ArrowUpRight size={18} /></a>
-              <a href="tel:+923170219387"><Phone size={18} /><span>PHONE</span><strong>+92 317 0219387</strong><ArrowUpRight size={18} /></a>
-              <a href="https://www.linkedin.com/in/muhammad-uzair-9255433a0/" target="_blank" rel="noreferrer"><Linkedin size={18} /><span>NETWORK</span><strong>Connect on LinkedIn</strong><ArrowUpRight size={18} /></a>
-              <a href="mailto:hk202504@gmail.com?subject=Project%20Inquiry"><Send size={18} /><span>START</span><strong>Send a project inquiry</strong><ArrowUpRight size={18} /></a>
-            </div>
+        <section id="contact" className="contact-clean">
+          <div>
+            <SectionLabel>Contact</SectionLabel>
+            <h2>Let&apos;s build something useful.</h2>
+            <p>Have a role, product, or idea in mind? I&apos;d be happy to hear about it.</p>
           </div>
-          <footer className="site-footer">
-            <a className="brand brand-footer" href="#home"><img src={markUrl} alt="MU signal mark" /><span><strong>MU/01</strong><small>Muhammad Uzair</small></span></a>
-            <p>© {new Date().getFullYear()} Muhammad Uzair. Designed as a system, built for the web.</p>
-            <a href="#home" className="back-top">Back to top <ArrowUpRight size={14} /></a>
-          </footer>
+          <div className="contact-actions-clean">
+            <a className="email-big" href="mailto:hk202504@gmail.com">hk202504@gmail.com <ArrowUpRight size={22} /></a>
+            <a href="tel:+923170219387"><Phone size={17} /> +92 317 0219387</a>
+            <a href="https://www.linkedin.com/in/muhammad-uzair-9255433a0/" target="_blank" rel="noreferrer"><Linkedin size={17} /> LinkedIn profile</a>
+            <a href="mailto:hk202504@gmail.com?subject=Project%20Inquiry"><Send size={17} /> Send an inquiry</a>
+          </div>
         </section>
       </main>
+
+      <footer className="clean-footer"><span>© {new Date().getFullYear()} Muhammad Uzair</span><a href="#home">Back to top ↑</a></footer>
     </div>
   );
 }

@@ -93,3 +93,6 @@ Wordmark **MU/01** format mein hoga: geometric `M` aur `U` signal-grid alignment
 - Headings never use Inter; Space Grotesk, DM Sans aur IBM Plex Mono ki hierarchy strictly follow hogi.
 - Rounded shapes sparingly use honge; cards shallow 10px radius aur structured borders mein rahenge.
 - Real project links, email, phone aur profile links current portfolio se preserve honge.
+- Har major section mein ek restrained **Signal Cobalt rail**, section index, aur chhota coordinate-style metadata marker use hoga; yeh ornamental clutter nahi banega.
+- Reading surfaces warm bone/ivory rahengi; ink navy authority surface, Signal Cobalt identity/action color, aur clay/copper sirf portrait-linked subtle detail hoga.
+- Header identity custom **MU/01 signal-grid mark** use karegi; plain initials square use nahi hoga.
