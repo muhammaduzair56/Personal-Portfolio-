@@ -11,5 +11,5 @@
 - [x] Replace the project-specific portrait URL with a Vercel-compatible public image path.
 - [x] Push the portrait fix to GitHub so Vercel redeploys the corrected site.
 - [ ] Confirm the deployed portfolio renders the portrait correctly.
-- [ ] Replace all portfolio LinkedIn references with the newly provided profile URL.
-- [ ] Push the LinkedIn profile update to GitHub for Vercel redeployment.
+- [x] Replace all portfolio LinkedIn references with the newly provided profile URL.
+- [x] Push the LinkedIn profile update to GitHub for Vercel redeployment.
