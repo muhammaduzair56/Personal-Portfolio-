@@ -8,3 +8,6 @@
 - [x] Confirm the remote repository contains the latest commit.
 - [x] Refresh the GitHub connection with a token that has write access to Personal-Portfolio-.
 - [x] Push the latest portfolio after the refreshed connection is confirmed.
+- [ ] Replace the project-specific portrait URL with a Vercel-compatible public image path.
+- [ ] Push the portrait fix to GitHub so Vercel redeploys the corrected site.
+- [ ] Confirm the deployed portfolio renders the portrait correctly.

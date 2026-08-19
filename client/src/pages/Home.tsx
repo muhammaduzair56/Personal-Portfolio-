@@ -18,7 +18,7 @@ import {
   X,
 } from "lucide-react";
 
-const portraitUrl = "/manus-storage/muhammad-uzair-original-portrait_021ca8b9.png";
+const portraitUrl = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663898260788/bAiVyVRyYRIKCubj.png";
 
 const navigation = [
   ["About", "#about"],
