@@ -21,3 +21,7 @@
 - [x] Improve mobile navigation, touch targets, hero sizing, project layout, and text readability.
 - [x] Validate the optimized site at mobile and desktop breakpoints.
 - [x] Push the SEO and responsive-design improvements to GitHub for Vercel redeployment.
+- [x] Add an accessible light/dark theme toggle with clear state feedback.
+- [x] Preserve the user’s selected theme and support system color preference on first visit.
+- [x] Refine dark surfaces, contrast, and responsive controls across the portfolio.
+- [x] Validate both themes on mobile and desktop, then push the update to GitHub.

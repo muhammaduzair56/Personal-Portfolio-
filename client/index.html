@@ -23,6 +23,16 @@
     <meta name="twitter:description" content="Full Stack and AI Developer building practical web products, scalable APIs, and AI-powered experiences." />
     <meta name="twitter:image" content="https://files.manuscdn.com/user_upload_by_module/session_file/310519663898260788/bAiVyVRyYRIKCubj.png" />
     <title>Muhammad Uzair — Full Stack & AI Developer</title>
+    <script>
+      (() => {
+        try {
+          const queryTheme = new URLSearchParams(window.location.search).get("theme");
+          const stored = localStorage.getItem("mu-portfolio-theme");
+          const isDark = queryTheme ? queryTheme === "dark" : stored ? stored === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
+          if (isDark) document.documentElement.classList.add("dark");
+        } catch (_) {}
+      })();
+    </script>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",

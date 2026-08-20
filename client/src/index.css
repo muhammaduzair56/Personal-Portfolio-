@@ -61,6 +61,9 @@ a:focus-visible, button:focus-visible { outline: 3px solid rgba(37,99,235,.3); o
 .header-cta, .primary-button { display: inline-flex; align-items: center; justify-content: center; gap: 7px; color: #fff; background: var(--navy); font-size: .79rem; font-weight: 700; padding: 11px 15px; transition: transform 160ms var(--ease-out), background 160ms var(--ease-out); }
 .header-cta:hover, .primary-button:hover { background: var(--blue); }
 .header-cta:active, .primary-button:active { transform: scale(.97); }
+.theme-toggle { min-height: 40px; display: inline-flex; align-items: center; justify-content: center; gap: 7px; margin-right: 10px; padding: 8px 10px; border: 1px solid var(--line); background: transparent; color: #344054; font: 700 .72rem "DM Sans", sans-serif; transition: transform 160ms var(--ease-out), background 160ms var(--ease-out), border-color 160ms var(--ease-out); }
+.theme-toggle:hover { border-color: var(--blue); background: var(--blue-soft); color: var(--blue); }
+.theme-toggle:active { transform: scale(.97); }
 .mobile-menu { display: none; min-width: 44px; min-height: 44px; padding: 0; border: 0; background: transparent; color: var(--navy); }
 
 .clean-hero { max-width: 1280px; margin: 0 auto; padding: clamp(56px,9vw,120px) max(5.5vw,24px) 80px; display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(340px,.65fr); gap: clamp(44px,8vw,130px); align-items: center; }
@@ -152,6 +155,32 @@ h2 { margin: 0; font: 600 clamp(2.35rem,4.5vw,4.85rem)/1.01 "Space Grotesk", san
 .clean-footer { min-height: 78px; padding: 0 max(5.5vw,24px); display: flex; align-items: center; justify-content: space-between; background: var(--navy); color: #b8c2d5; font-size: .71rem; }
 .clean-footer a { color: white; font-weight: 600; }
 
+.dark { color-scheme: dark; }
+.dark body, .dark .clean-portfolio { background: #080f1f; color: #edf2ff; }
+.dark .clean-header { border-color: #263349; background: rgba(8,15,31,.94); }
+.dark .clean-nav a, .dark .hero-links a, .dark .availability { color: #c4cede; }
+.dark .clean-nav a:hover, .dark .hero-links a:hover { color: #80a9ff; }
+.dark .brand-copy small, .dark .portrait-meta { color: #9baac2; }
+.dark .theme-toggle { border-color: #34435a; color: #d6e1f6; }
+.dark .theme-toggle:hover { border-color: #80a9ff; background: #13294c; color: #a9c3ff; }
+.dark .hero-lede, .dark .about-copy > p, .dark .project-description, .dark .experience-list article div p, .dark .contact-clean > div:first-child > p:last-child { color: #b4c0d5; }
+.dark .portrait-image-wrap { border-color: #34435a; background: #101b30; }
+.dark .portrait-clean figcaption { color: #edf2ff; background: #132038; box-shadow: 0 8px 22px rgba(0,0,0,.35); }
+.dark .portrait-signals span { background: #17253d; }
+.dark .portrait-signals span:last-child { background: var(--blue); }
+.dark .about-clean { background: #0d1728; }
+.dark .quick-facts > div, .dark .projects-list, .dark .project-row, .dark .experience-list, .dark .experience-list article { border-color: #28364c; }
+.dark .quick-facts span, .dark .quick-facts strong, .dark .project-proof, .dark .project-row-links a, .dark .experience-list strong { color: #d3dced; }
+.dark .technology-tags span { color: #d5dff1; background: #162236; border-color: #34435a; }
+.dark .all-projects { color: #80a9ff; }
+.dark .skills-clean { background: #050b17; }
+.dark .skill-card-clean { background: #101a2c; border-color: #2b3a52; }
+.dark .skill-card-clean span { background: #17243a; border-color: #34435a; color: #e2e9f6; }
+.dark .contact-clean { background: #0e1a2e; color: #edf2ff; }
+.dark .contact-actions-clean, .dark .contact-actions-clean a { border-color: #35445b; }
+.dark .contact-actions-clean a:hover { color: #8fb4ff; }
+.dark .clean-footer { background: #050a14; color: #aebbd0; }
+
 @media (max-width: 760px) {
   .clean-header { height: 70px; padding: 0 20px; }
   .clean-brand { font-size: .82rem; }
@@ -159,6 +188,8 @@ h2 { margin: 0; font: 600 clamp(2.35rem,4.5vw,4.85rem)/1.01 "Space Grotesk", san
   .brand-copy strong { font-size: .67rem; }
   .brand-copy small { font-size: .49rem; }
   .header-cta { display: none; }
+  .theme-toggle { min-width: 44px; min-height: 44px; margin-left: auto; margin-right: 4px; padding: 0; }
+  .theme-toggle span { display: none; }
   .mobile-menu { display: grid; place-items: center; }
   .clean-nav { display: none; }
   .clean-nav.open { display: flex; position: fixed; top: 70px; left: 0; right: 0; padding: 10px 20px 22px; flex-direction: column; align-items: stretch; gap: 0; margin: 0; background: var(--paper); border-bottom: 1px solid var(--line); box-shadow: 0 14px 24px rgba(16,24,40,.07); }

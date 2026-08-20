@@ -13,10 +13,13 @@ import {
   Mail,
   MapPin,
   Menu,
+  Moon,
   Phone,
   Send,
+  Sun,
   X,
 } from "lucide-react";
+import { useTheme } from "@/contexts/ThemeContext";
 
 const portraitUrl = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663898260788/bAiVyVRyYRIKCubj.png";
 
@@ -117,6 +120,7 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { theme, toggleTheme } = useTheme();
   const closeMenu = () => setMenuOpen(false);
 
   return (
@@ -134,6 +138,16 @@ export default function Home() {
           <a className="nav-mobile-contact" href="mailto:uzairkhilji307@gmail.com" onClick={closeMenu}>Email me <ArrowUpRight size={15} /></a>
         </nav>
 
+        <button
+          className="theme-toggle"
+          type="button"
+          onClick={toggleTheme}
+          aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+          title={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+        >
+          {theme === "dark" ? <Sun size={17} aria-hidden="true" /> : <Moon size={17} aria-hidden="true" />}
+          <span>{theme === "dark" ? "Light" : "Dark"}</span>
+        </button>
         <a className="header-cta" href="mailto:uzairkhilji307@gmail.com">Let&apos;s talk <ArrowUpRight size={15} /></a>
         <button className="mobile-menu" type="button" aria-label="Toggle navigation" aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}>
           {menuOpen ? <X size={23} /> : <Menu size={24} />}
