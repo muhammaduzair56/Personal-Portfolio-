@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://personal-portfolio-mocha-eight-71.vercel.app/sitemap.xml

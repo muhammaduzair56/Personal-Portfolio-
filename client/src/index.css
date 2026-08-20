@@ -1,4 +1,5 @@
 /* Clean professional portfolio: mobile-first content flow, original centered portrait, calm typography, and restrained blue accents. */
+/* MU/01 Signal System: calm editorial surfaces, precise cobalt accents, and mobile-first professional readability. */
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
@@ -38,8 +39,8 @@
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body { margin: 0; background: var(--paper); color: var(--text); font-family: "DM Sans", sans-serif; }
+html { scroll-behavior: smooth; scroll-padding-top: 84px; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body { margin: 0; overflow-x: hidden; background: var(--paper); color: var(--text); font-family: "DM Sans", sans-serif; }
 a { color: inherit; text-decoration: none; }
 button { font: inherit; }
 a:focus-visible, button:focus-visible { outline: 3px solid rgba(37,99,235,.3); outline-offset: 3px; }
@@ -60,7 +61,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid rgba(37,99,235,.3); o
 .header-cta, .primary-button { display: inline-flex; align-items: center; justify-content: center; gap: 7px; color: #fff; background: var(--navy); font-size: .79rem; font-weight: 700; padding: 11px 15px; transition: transform 160ms var(--ease-out), background 160ms var(--ease-out); }
 .header-cta:hover, .primary-button:hover { background: var(--blue); }
 .header-cta:active, .primary-button:active { transform: scale(.97); }
-.mobile-menu { display: none; padding: 0; border: 0; background: transparent; color: var(--navy); }
+.mobile-menu { display: none; min-width: 44px; min-height: 44px; padding: 0; border: 0; background: transparent; color: var(--navy); }
 
 .clean-hero { max-width: 1280px; margin: 0 auto; padding: clamp(56px,9vw,120px) max(5.5vw,24px) 80px; display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(340px,.65fr); gap: clamp(44px,8vw,130px); align-items: center; }
 .hero-copy-clean { max-width: 690px; }
@@ -118,7 +119,7 @@ h2 { margin: 0; font: 600 clamp(2.35rem,4.5vw,4.85rem)/1.01 "Space Grotesk", san
 .technology-tags { display: flex; flex-wrap: wrap; gap: 7px; }
 .technology-tags span, .skill-card-clean span { color: #344054; background: var(--mist); border: 1px solid var(--line); padding: 6px 8px; font-size: .67rem; font-weight: 600; }
 .project-row-links { display: flex; flex-direction: column; align-items: flex-start; gap: 11px; padding-top: 5px; }
-.project-row-links a { display: inline-flex; align-items: center; gap: 5px; color: #344054; font-size: .76rem; font-weight: 700; }
+.project-row-links a { display: inline-flex; align-items: center; min-height: 38px; gap: 5px; color: #344054; font-size: .76rem; font-weight: 700; }
 .project-row-links a:hover { color: var(--blue); }
 .all-projects { display: inline-flex; align-items: center; gap: 7px; margin-top: 29px; color: var(--blue); font-size: .83rem; font-weight: 700; }
 
@@ -152,7 +153,7 @@ h2 { margin: 0; font: 600 clamp(2.35rem,4.5vw,4.85rem)/1.01 "Space Grotesk", san
 .clean-footer a { color: white; font-weight: 600; }
 
 @media (max-width: 760px) {
-  .clean-header { height: 66px; padding: 0 20px; }
+  .clean-header { height: 70px; padding: 0 20px; }
   .clean-brand { font-size: .82rem; }
   .brand-mark { width: 27px; height: 27px; }
   .brand-copy strong { font-size: .67rem; }
@@ -160,18 +161,19 @@ h2 { margin: 0; font: 600 clamp(2.35rem,4.5vw,4.85rem)/1.01 "Space Grotesk", san
   .header-cta { display: none; }
   .mobile-menu { display: grid; place-items: center; }
   .clean-nav { display: none; }
-  .clean-nav.open { display: flex; position: fixed; top: 66px; left: 0; right: 0; padding: 10px 20px 22px; flex-direction: column; align-items: stretch; gap: 0; margin: 0; background: var(--paper); border-bottom: 1px solid var(--line); box-shadow: 0 14px 24px rgba(16,24,40,.07); }
-  .clean-nav.open a { padding: 15px 0; border-bottom: 1px solid var(--line); font-size: .9rem; }
+  .clean-nav.open { display: flex; position: fixed; top: 70px; left: 0; right: 0; padding: 10px 20px 22px; flex-direction: column; align-items: stretch; gap: 0; margin: 0; background: var(--paper); border-bottom: 1px solid var(--line); box-shadow: 0 14px 24px rgba(16,24,40,.07); }
+  .clean-nav.open a { min-height: 48px; display: flex; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--line); font-size: .94rem; }
   .clean-nav.open .nav-mobile-contact { display: flex; align-items: center; justify-content: space-between; color: var(--blue); }
-  .clean-hero { display: flex; flex-direction: column; align-items: stretch; gap: 39px; padding: 57px 20px 68px; }
+  .clean-hero { display: flex; flex-direction: column; align-items: stretch; gap: 39px; padding: 50px 20px 68px; }
   .hero-copy-clean { order: 1; }
   .portrait-clean { order: 2; width: 100%; max-width: 430px; margin: 0 auto; padding-top: 20px; }
   .portrait-meta { font-size: .46rem; }
   .availability { font-size: .59rem; line-height: 1.4; margin-bottom: 18px; }
-  .hero-copy-clean h1 { font-size: clamp(2.75rem, 12.2vw, 4.15rem); }
+  .hero-copy-clean h1 { font-size: clamp(2.58rem, 11.5vw, 4rem); letter-spacing: -.066em; }
   .hero-lede { margin: 21px 0 25px; font-size: .94rem; line-height: 1.65; }
-  .hero-buttons { gap: 19px; }
-  .primary-button { padding: 13px 15px; font-size: .78rem; }
+  .hero-buttons { gap: 14px; }
+  .primary-button { min-height: 48px; padding: 13px 16px; font-size: .8rem; }
+  .text-button { min-height: 44px; }
   .hero-links { margin-top: 28px; }
   .portrait-image-wrap { aspect-ratio: 1.1 / 1; min-height: 330px; background: #eef2f6; }
   .portrait-image-wrap img { object-fit: contain; object-position: center; }
@@ -198,7 +200,7 @@ h2 { margin: 0; font: 600 clamp(2.35rem,4.5vw,4.85rem)/1.01 "Space Grotesk", san
   .project-main h3 { font-size: 1.55rem; }
   .project-description { font-size: .81rem; }
   .project-proof { font-size: .61rem; }
-  .project-row-links { grid-column: 2; flex-direction: row; gap: 18px; padding-top: 3px; }
+  .project-row-links { grid-column: 2; flex-direction: row; gap: 16px; padding-top: 6px; }
   .skills-grid { margin-top: 35px; grid-template-columns: 1fr; }
   .skill-card-clean { min-height: 0; padding: 21px; }
   .skill-card-clean h3 { margin-bottom: 20px; }
@@ -207,8 +209,18 @@ h2 { margin: 0; font: 600 clamp(2.35rem,4.5vw,4.85rem)/1.01 "Space Grotesk", san
   .contact-clean { display: block; padding: 68px 20px; }
   .contact-clean::before { left: 20px; top: 31px; height: 22px; }
   .contact-actions-clean { margin-top: 37px; }
-  .contact-actions-clean .email-big { font-size: 1.05rem; }
+  .contact-actions-clean .email-big { font-size: 1.05rem; overflow-wrap: anywhere; }
   .clean-footer { min-height: 66px; padding: 0 20px; font-size: .64rem; }
+}
+
+@media (max-width: 380px) {
+  .brand-copy small { display: none; }
+  .clean-hero { padding-inline: 18px; }
+  .hero-buttons { display: grid; grid-template-columns: 1fr 1fr; }
+  .hero-buttons > a { justify-content: center; }
+  .section-pad, .contact-clean { padding-inline: 18px; }
+  .section-pad::before, .contact-clean::before { left: 18px; }
+  .project-row { grid-template-columns: 26px minmax(0,1fr); gap: 10px; }
 }
 
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; } }

@@ -17,3 +17,7 @@
 - [x] Replace the portfolio email with uzairkhilji307@gmail.com.
 - [x] Replace overclaimed skills with the user-verified development stack.
 - [x] Push the portfolio content correction to GitHub for Vercel redeployment.
+- [x] Add complete SEO metadata, social previews, canonical URL, and crawl directives.
+- [x] Improve mobile navigation, touch targets, hero sizing, project layout, and text readability.
+- [x] Validate the optimized site at mobile and desktop breakpoints.
+- [x] Push the SEO and responsive-design improvements to GitHub for Vercel redeployment.

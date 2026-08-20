@@ -158,7 +158,7 @@ export default function Home() {
 
           <figure className="portrait-clean">
             <div className="portrait-meta"><span>PROFILE / 2026</span><span>24.867° N · 67.010° E</span></div>
-            <div className="portrait-image-wrap"><img src={portraitUrl} alt="Muhammad Uzair, Full Stack Developer and AI Developer" /></div>
+            <div className="portrait-image-wrap"><img src={portraitUrl} alt="Muhammad Uzair, Full Stack Developer and AI Developer" width="2560" height="1440" decoding="async" fetchPriority="high" /></div>
             <figcaption><span>MU</span><p>Karachi, Pakistan<br />Open to work</p></figcaption>
             <div className="portrait-signals"><span>WEB PRODUCTS</span><span>AI SYSTEMS</span></div>
           </figure>
