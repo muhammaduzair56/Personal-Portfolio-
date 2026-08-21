@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { getActiveSection, getScrollProgress } from "./Home";
+import { getActiveSection, getDrawerCloseEvent, getScrollProgress } from "./Home";
 
 describe("getActiveSection", () => {
   const sections = [
@@ -17,6 +17,17 @@ describe("getActiveSection", () => {
     expect(getActiveSection(sections, 500)).toBe("projects");
     expect(getActiveSection(sections, 900)).toBe("skills");
     expect(getActiveSection(sections, 1400)).toBe("contact");
+  });
+});
+
+describe("getDrawerCloseEvent", () => {
+  it("creates a privacy-conscious post-navigation event payload", () => {
+    expect(getDrawerCloseEvent("projects", 43, "/")).toEqual({
+      event: "mobile_drawer_closed_after_navigation",
+      section: "projects",
+      progress: 43,
+      path: "/",
+    });
   });
 });
 

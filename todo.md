@@ -68,3 +68,7 @@
 - [x] Add accessible progress semantics, responsive scrapbook styling, and unit coverage for the progress calculation.
 - [x] Correct nested-section geometry so active navigation remains synchronized while the mobile drawer is open.
 - [x] Validate the mobile drawer indicator and publish the enhancement to GitHub.
+- [x] Add privacy-conscious analytics tracking when the mobile drawer closes after section navigation.
+- [ ] Test that the event fires only for post-navigation drawer closures and publish the analytics enhancement.
+- [ ] Confirm no analytics event fires when the drawer closes without navigation.
+- [ ] Commit, push, and checkpoint the analytics enhancement.

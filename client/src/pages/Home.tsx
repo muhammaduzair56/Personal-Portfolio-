@@ -33,6 +33,8 @@ const skills = ["React", "Next.js", "TypeScript", "Tailwind CSS", "Python", "Fas
 const emailAddress = "uzairkhilji307@gmail.com";
 const gmailComposeUrl = "https://mail.google.com/mail/?view=cm&fs=1&to=uzairkhilji307%40gmail.com";
 const resumeUrl = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663898260788/amHTbobdWemnQKFg.pdf";
+const analyticsEndpoint = import.meta.env.VITE_ANALYTICS_ENDPOINT as string | undefined;
+const analyticsWebsiteId = import.meta.env.VITE_ANALYTICS_WEBSITE_ID as string | undefined;
 
 export function getActiveSection(sections: Array<{ id: string; top: number }>, marker: number, fallback = "") {
   return [...sections]
@@ -46,6 +48,52 @@ export function getScrollProgress(scrollY: number, viewportHeight: number, docum
   return Math.round(Math.min(Math.max(scrollY / scrollableHeight, 0), 1) * 100);
 }
 
+export function getDrawerCloseEvent(section: string, progress: number, path = "") {
+  return {
+    event: "mobile_drawer_closed_after_navigation",
+    section,
+    progress,
+    path,
+  };
+}
+
+function trackDrawerCloseAfterNavigation(section: string, progress: number) {
+  if (typeof window === "undefined" || typeof navigator === "undefined") return;
+  const event = getDrawerCloseEvent(section, progress, window.location.pathname);
+  const umami = (window as Window & {
+    umami?: { track: (eventName: string, data: { section: string; progress: number }) => void };
+  }).umami;
+  if (umami?.track) {
+    umami.track(event.event, { section: event.section, progress: event.progress });
+    return;
+  }
+  if (!analyticsEndpoint) return;
+  const eventUrl = `${analyticsEndpoint.replace(/\/+$/, "")}/api/send`;
+  const body = JSON.stringify({
+    type: "event",
+    payload: {
+      website: analyticsWebsiteId,
+      hostname: window.location.hostname,
+      url: event.path,
+      title: document.title,
+      event_name: event.event,
+      data: { section: event.section, progress: event.progress },
+    },
+  });
+  try {
+    const blob = new Blob([body], { type: "application/json" });
+    if (navigator.sendBeacon?.(eventUrl, blob)) return;
+  } catch {
+    // Fall through to a keepalive request when Beacon is unavailable.
+  }
+  void fetch(eventUrl, {
+    method: "POST",
+    body,
+    headers: { "Content-Type": "application/json" },
+    keepalive: true,
+  }).catch(() => undefined);
+}
+
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [emailCopied, setEmailCopied] = useState(false);
@@ -53,6 +101,11 @@ export default function Home() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const { theme, toggleTheme } = useTheme();
   const closeMenu = () => setMenuOpen(false);
+  const handleNavClick = (sectionId: string) => {
+    if (menuOpen) trackDrawerCloseAfterNavigation(sectionId, scrollProgress);
+    setActiveSection(sectionId);
+    closeMenu();
+  };
 
   useEffect(() => {
     const sections = navItems
@@ -122,7 +175,7 @@ export default function Home() {
               key={label}
               className={isActive ? "is-active" : undefined}
               aria-current={isActive ? "location" : undefined}
-              onClick={() => { setActiveSection(sectionId); closeMenu(); }}
+              onClick={() => handleNavClick(sectionId)}
             >{label}</a>;
           })}
           <a className="mobile-email" href="#contact" onClick={closeMenu}>Contact details <ArrowUpRight size={16} /></a>
