@@ -44,3 +44,6 @@
 - [x] Create a crisp MU favicon aligned with the warm scrapbook brand system.
 - [x] Add the favicon and browser metadata links to the portfolio head.
 - [x] Validate and publish the favicon update to GitHub.
+- [x] Add a hand-drawn Download Resume control to the hero section.
+- [x] Connect the button to Muhammad Uzair’s actual resume PDF and verify mobile download behavior.
+- [x] Publish the resume-button update to GitHub.

@@ -6,6 +6,7 @@ import { useState } from "react";
 import {
   ArrowRight,
   ArrowUpRight,
+  Download,
   Github,
   Linkedin,
   Mail,
@@ -60,6 +61,7 @@ const projectIndex = [
 const skills = ["React", "Next.js", "TypeScript", "Tailwind CSS", "Python", "FastAPI", "PostgreSQL", "Groq API", "Gemini API", "Docker", "Vercel", "Git"];
 const emailAddress = "uzairkhilji307@gmail.com";
 const gmailComposeUrl = "https://mail.google.com/mail/?view=cm&fs=1&to=uzairkhilji307%40gmail.com";
+const resumeUrl = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663898260788/amHTbobdWemnQKFg.pdf";
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -116,6 +118,9 @@ export default function Home() {
                 <a className="ink-button" href="#projects">View my work <ArrowRight size={18} /></a>
                 <a className="hand-link" href="#contact">Let&apos;s talk <ArrowUpRight size={18} /></a>
               </div>
+              <a className="resume-link" href={resumeUrl} target="_blank" rel="noreferrer" download="Muhammad-Uzair-Resume.pdf">
+                <Download size={17} /> Download Resume <span aria-hidden="true">↙</span>
+              </a>
               <div className="social-scribbles">
                 <a href="https://github.com/ucdexpert" target="_blank" rel="noreferrer"><Github size={17} /> GitHub</a>
                 <a href="https://www.linkedin.com/in/muhammad-uzair-066733314" target="_blank" rel="noreferrer"><Linkedin size={17} /> LinkedIn</a>
