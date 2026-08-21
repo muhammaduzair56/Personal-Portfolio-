@@ -6,8 +6,10 @@ import { useEffect, useRef, useState } from "react";
 import {
   ArrowRight,
   ArrowUpRight,
+  Check,
   Download,
   Github,
+  Loader2,
   Linkedin,
   Mail,
   MapPin,
@@ -76,6 +78,12 @@ export function getContactCtaConversionEvent(section: string, cta: string, progr
   };
 }
 
+export function getContactCtaFeedbackLabel(state: "idle" | "loading" | "success") {
+  if (state === "loading") return "Copying email";
+  if (state === "success") return "Email copied";
+  return "Copy email address";
+}
+
 function trackAnalyticsEvent(eventName: string, data: Record<string, string | number>) {
   if (typeof window === "undefined" || typeof navigator === "undefined") return;
   const umami = (window as Window & {
@@ -115,6 +123,8 @@ function trackAnalyticsEvent(eventName: string, data: Record<string, string | nu
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [emailCopied, setEmailCopied] = useState(false);
+  const [contactFeedback, setContactFeedback] = useState<"idle" | "loading" | "success">("idle");
+  const contactFeedbackTimerRef = useRef<number | null>(null);
   const [activeSection, setActiveSection] = useState("");
   const [scrollProgress, setScrollProgress] = useState(0);
   const [pendingFunnelSection, setPendingFunnelSection] = useState("");
@@ -201,14 +211,30 @@ export default function Home() {
     });
   };
 
-  const copyEmail = async () => {
+  const copyEmail = async (): Promise<boolean> => {
     try {
       await navigator.clipboard.writeText(emailAddress);
       setEmailCopied(true);
       window.setTimeout(() => setEmailCopied(false), 2200);
+      return true;
     } catch {
       window.location.href = gmailComposeUrl;
+      return false;
     }
+  };
+
+  const handleContactCopy = async () => {
+    if (contactFeedback === "loading") return;
+    setContactFeedback("loading");
+    trackContactCta("contact_copy_email");
+    const copied = await copyEmail();
+    if (!copied) {
+      setContactFeedback("idle");
+      return;
+    }
+    setContactFeedback("success");
+    if (contactFeedbackTimerRef.current !== null) window.clearTimeout(contactFeedbackTimerRef.current);
+    contactFeedbackTimerRef.current = window.setTimeout(() => setContactFeedback("idle"), 2200);
   };
 
   return (
@@ -352,7 +378,17 @@ export default function Home() {
           <p className="hand-kicker">Let&apos;s make something useful</p>
           <h2>Have an idea worth building?</h2>
           <div className="contact-cta-row">
-            <button className="ink-button" type="button" onClick={() => { trackContactCta("contact_copy_email"); void copyEmail(); }}>{emailCopied ? "Email copied" : "Copy email address"} <Mail size={17} /></button>
+            <button
+              className={`ink-button contact-copy-cta feedback-${contactFeedback}`}
+              type="button"
+              onClick={() => void handleContactCopy()}
+              disabled={contactFeedback === "loading"}
+              aria-live="polite"
+              aria-label={getContactCtaFeedbackLabel(contactFeedback)}
+            >
+              {contactFeedback === "loading" ? <Loader2 className="contact-cta-icon contact-cta-spinner" size={17} aria-hidden="true" /> : contactFeedback === "success" ? <Check className="contact-cta-icon" size={17} aria-hidden="true" /> : <Mail className="contact-cta-icon" size={17} aria-hidden="true" />}
+              <span>{getContactCtaFeedbackLabel(contactFeedback)}</span>
+            </button>
             <a className="gmail-link" href={gmailComposeUrl} target="_blank" rel="noreferrer" onClick={() => trackContactCta("contact_open_gmail")}>Open Gmail <ArrowUpRight size={17} /></a>
           </div>
         </section>

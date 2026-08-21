@@ -50,6 +50,14 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--terracotta); ou
 .scrap-connect, .ink-button { display: inline-flex; align-items: center; justify-content: center; gap: 9px; min-height: 46px; padding: 0 22px; color: #fff; background: var(--ink); border: 1px solid var(--ink); border-radius: 7px; font-size: .76rem; font-weight: 700; letter-spacing: .02em; text-transform: uppercase; transition: transform 160ms var(--ease-out), background 160ms var(--ease-out); }
 .scrap-connect:hover, .ink-button:hover { background: var(--terracotta); border-color: var(--terracotta); }
 .scrap-connect:active, .ink-button:active { transform: scale(.97); }
+.contact-copy-cta { min-width: 190px; }
+.contact-copy-cta:disabled { cursor: wait; opacity: .84; }
+.contact-cta-icon { flex: 0 0 auto; }
+.contact-cta-spinner { animation: contact-cta-spin 720ms linear infinite; }
+@keyframes contact-cta-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) {
+  .contact-cta-spinner { animation: none; }
+}
 .scrap-theme, .scrap-menu { display: grid; place-items: center; min-width: 42px; min-height: 42px; padding: 0; border: 0; color: var(--ink); background: transparent; }
 .scrap-theme { border: 1px solid var(--line); border-radius: 50%; }
 .scrap-theme:hover { color: var(--terracotta); border-color: var(--terracotta); }

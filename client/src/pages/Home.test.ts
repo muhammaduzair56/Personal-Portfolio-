@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { getActiveSection, getContactCtaConversionEvent, getDrawerCloseEvent, getScrollProgress, getSectionFunnelEvent } from "./Home";
+import { getActiveSection, getContactCtaConversionEvent, getContactCtaFeedbackLabel, getDrawerCloseEvent, getScrollProgress, getSectionFunnelEvent } from "./Home";
 
 describe("getActiveSection", () => {
   const sections = [
@@ -53,6 +53,14 @@ describe("getContactCtaConversionEvent", () => {
       cta: "hero_talk",
       progress: 61,
     });
+  });
+});
+
+describe("getContactCtaFeedbackLabel", () => {
+  it("returns clear labels for each feedback state", () => {
+    expect(getContactCtaFeedbackLabel("idle")).toBe("Copy email address");
+    expect(getContactCtaFeedbackLabel("loading")).toBe("Copying email");
+    expect(getContactCtaFeedbackLabel("success")).toBe("Email copied");
   });
 });
 

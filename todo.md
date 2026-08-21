@@ -77,3 +77,6 @@
 - [x] Publish the verified section funnel analytics enhancement to GitHub and save a checkpoint.
 - [x] Add a contact CTA conversion event gated by the mobile section_engaged funnel stage.
 - [x] Test engaged and non-engaged CTA paths, deduplicate the event, and publish the analytics enhancement.
+- [x] Add loading and success feedback animation to the contact CTA button after click.
+- [x] Preserve analytics gating, keyboard accessibility, mobile layout, and test the feedback state transitions.
+- [ ] Publish the CTA feedback enhancement to GitHub and save a checkpoint.
