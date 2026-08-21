@@ -47,3 +47,6 @@
 - [x] Add a hand-drawn Download Resume control to the hero section.
 - [x] Connect the button to Muhammad Uzair’s actual resume PDF and verify mobile download behavior.
 - [x] Publish the resume-button update to GitHub.
+- [x] Create a reusable case-study data model and dedicated routes for six portfolio projects.
+- [x] Link featured project cards and the additional-work index to their relevant case-study pages.
+- [x] Validate responsive case-study pages and publish the project showcase expansion to GitHub.

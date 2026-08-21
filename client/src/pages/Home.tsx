@@ -18,6 +18,7 @@ import {
   X,
 } from "lucide-react";
 import { useTheme } from "@/contexts/ThemeContext";
+import { additionalCaseStudies, featuredCaseStudies } from "@/lib/projects";
 
 const portraitUrl = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663898260788/bAiVyVRyYRIKCubj.png";
 
@@ -26,36 +27,6 @@ const navItems = [
   ["Projects", "#projects"],
   ["Skills", "#skills"],
   ["Contact", "#contact"],
-];
-
-const featuredProjects = [
-  {
-    title: "SkillSense",
-    type: "AI career platform",
-    note: "Resume intelligence & career guidance",
-    url: "https://skillsensepk.vercel.app/",
-    image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663898260788/QfhhWBumBbqbJfzk.webp",
-  },
-  {
-    title: "The Burger House",
-    type: "Interactive 3D experience",
-    note: "React Three Fiber & GSAP",
-    url: "https://premiumburger.vercel.app/",
-    image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1200&q=85",
-  },
-  {
-    title: "E-Commerce Platform",
-    type: "Full stack storefront",
-    note: "Payments, cart & dashboard",
-    url: "https://e-commerce-mu-wheat-87.vercel.app/",
-    image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663898260788/kpnEUdeCIKGlaWEB.webp",
-  },
-];
-
-const projectIndex = [
-  ["Task Management App", "Collaborative planning workspace with real-time flows.", "https://auto-task-manager.vercel.app/dashboard"],
-  ["Physical AI Textbook", "Interactive learning platform with contextual AI help.", "https://physical-ai-textbook-frontend001-he.vercel.app/"],
-  ["REST API Service", "Secure, documented backend integration service.", "https://api-docs-demo.vercel.app"],
 ];
 
 const skills = ["React", "Next.js", "TypeScript", "Tailwind CSS", "Python", "FastAPI", "PostgreSQL", "Groq API", "Gemini API", "Docker", "Vercel", "Git"];
@@ -138,16 +109,16 @@ export default function Home() {
           <section id="projects" className="scrap-featured" aria-labelledby="featured-title">
             <p id="featured-title" className="hand-section-title">Featured Projects <i aria-hidden="true" /></p>
             <div className="polaroid-row">
-              {featuredProjects.map((project, index) => (
+              {featuredCaseStudies.map((project, index) => (
                 <article className={`polaroid polaroid-${index + 1}`} key={project.title}>
                   <div className="mini-project-screen">
                     <img src={project.image} alt={`${project.title} live project preview`} loading="lazy" decoding="async" />
-                    <span>{project.type}</span>
+                    <span>{project.category}</span>
                     <b>{project.title}</b>
                   </div>
                   <h2>{project.title}</h2>
-                  <p>{project.type}</p>
-                  <a href={project.url} target="_blank" rel="noreferrer">View project <ArrowRight size={16} /></a>
+                  <p>{project.shortDescription}</p>
+                  <a href={`/projects/${project.slug}`}>View case study <ArrowRight size={16} /></a>
                   {index === 1 && <em className="tape" aria-hidden="true" />}
                 </article>
               ))}
@@ -182,9 +153,9 @@ export default function Home() {
             <h2 id="more-work-title">A few more things I&apos;ve built.</h2>
           </div>
           <div className="index-list">
-            {projectIndex.map(([title, description, url], index) => (
-              <a href={url} target="_blank" rel="noreferrer" className="index-project" key={title}>
-                <span>0{index + 4}</span><div><h3>{title}</h3><p>{description}</p></div><ArrowUpRight size={20} />
+            {additionalCaseStudies.map((project, index) => (
+              <a href={`/projects/${project.slug}`} className="index-project" key={project.title}>
+                <span>0{index + 4}</span><div><h3>{project.title}</h3><p>{project.shortDescription}</p></div><ArrowUpRight size={20} />
               </a>
             ))}
           </div>
