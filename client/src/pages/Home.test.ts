@@ -3,10 +3,10 @@ import { getActiveSection, getScrollProgress } from "./Home";
 
 describe("getActiveSection", () => {
   const sections = [
-    { id: "contact", offsetTop: 1200 },
-    { id: "skills", offsetTop: 760 },
-    { id: "projects", offsetTop: 420 },
-    { id: "about", offsetTop: 160 },
+    { id: "contact", top: 1200 },
+    { id: "skills", top: 760 },
+    { id: "projects", top: 420 },
+    { id: "about", top: 160 },
   ];
 
   it("keeps navigation neutral before the first tracked section", () => {

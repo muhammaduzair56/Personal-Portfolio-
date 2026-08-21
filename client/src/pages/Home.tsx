@@ -34,10 +34,10 @@ const emailAddress = "uzairkhilji307@gmail.com";
 const gmailComposeUrl = "https://mail.google.com/mail/?view=cm&fs=1&to=uzairkhilji307%40gmail.com";
 const resumeUrl = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663898260788/amHTbobdWemnQKFg.pdf";
 
-export function getActiveSection(sections: Array<{ id: string; offsetTop: number }>, marker: number, fallback = "") {
+export function getActiveSection(sections: Array<{ id: string; top: number }>, marker: number, fallback = "") {
   return [...sections]
-    .sort((a, b) => a.offsetTop - b.offsetTop)
-    .reduce((current, section) => section.offsetTop <= marker ? section.id : current, fallback);
+    .sort((a, b) => a.top - b.top)
+    .reduce((current, section) => section.top <= marker ? section.id : current, fallback);
 }
 
 export function getScrollProgress(scrollY: number, viewportHeight: number, documentHeight: number) {
@@ -61,9 +61,17 @@ export default function Home() {
 
     const updateActiveSection = () => {
       const scrollOffset = Number.parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--scroll-offset")) || 88;
-      const marker = window.scrollY + scrollOffset + Math.min(window.innerHeight * 0.22, 160);
-      const current = getActiveSection(sections, marker);
-      const progress = getScrollProgress(window.scrollY, window.innerHeight, document.documentElement.scrollHeight);
+      const documentHeight = document.documentElement.scrollHeight;
+      const atPageEnd = window.scrollY + window.innerHeight >= documentHeight - 1;
+      const marker = atPageEnd
+        ? documentHeight - 1
+        : window.scrollY + scrollOffset + 12;
+      const positionedSections = sections.map((section) => ({
+        id: section.id,
+        top: section.getBoundingClientRect().top + window.scrollY,
+      }));
+      const current = getActiveSection(positionedSections, marker);
+      const progress = getScrollProgress(window.scrollY, window.innerHeight, documentHeight);
       setActiveSection((previous) => previous === current ? previous : current);
       setScrollProgress((previous) => previous === progress ? previous : progress);
     };

@@ -62,8 +62,9 @@
 - [x] Track the current section in view and expose an active navigation state on desktop and mobile.
 - [x] Add accessible active-link semantics and validate scroll tracking across responsive layouts.
 - [x] Fix top-of-page active state so the hero does not incorrectly highlight About.
-- [x] Validate active navigation changes through the tracked sections on desktop and mobile interactions.
+- [x] Revalidate active navigation changes through the tracked sections after correcting nested-section geometry.
 - [x] Publish the active-navigation enhancement to GitHub.
 - [x] Add a visual scroll-position progress indicator to the mobile navigation drawer alongside the active section item.
 - [x] Add accessible progress semantics, responsive scrapbook styling, and unit coverage for the progress calculation.
+- [x] Correct nested-section geometry so active navigation remains synchronized while the mobile drawer is open.
 - [ ] Validate the mobile drawer indicator and publish the enhancement to GitHub.
