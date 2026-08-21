@@ -25,3 +25,13 @@
 - [x] Preserve the user’s selected theme and support system color preference on first visit.
 - [x] Refine dark surfaces, contrast, and responsive controls across the portfolio.
 - [x] Validate both themes on mobile and desktop, then push the update to GitHub.
+- [ ] Create a standalone editorial portfolio design mockup without changing the deployed implementation.
+- [ ] Generate distinct portfolio layout concepts for visual selection without changing the live site.
+- [ ] Refine the selected Gallery Ledger concept into a more premium editorial mockup without changing the live site.
+- [ ] Create a radically different, high-impact portfolio concept outside the prior editorial website layouts.
+- [ ] Generate two balanced, practical premium portfolio concepts for selection without changing the live site.
+- [ ] Create the requested hand-crafted portfolio landing-page mockup without changing the live site.
+- [ ] Create the requested modern bento-grid portfolio mockup without changing the live site.
+- [x] Rebuild the portfolio around the supplied scrapbook reference while retaining Muhammad Uzair’s real content.
+- [x] Adapt the scrapbook layout for phone screens without losing hierarchy or readability.
+- [x] Validate the rebuilt design against the supplied reference and publish it to GitHub.
