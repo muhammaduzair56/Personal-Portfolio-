@@ -21,7 +21,8 @@
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 86px; }
+html { --scroll-offset: 88px; scroll-behavior: smooth; scroll-padding-top: var(--scroll-offset); }
+section[id], aside[id] { scroll-margin-top: var(--scroll-offset); }
 body { margin: 0; overflow-x: hidden; background: var(--paper); color: var(--ink); font-family: "DM Sans", sans-serif; }
 a { color: inherit; text-decoration: none; }
 button { font: inherit; }
@@ -227,7 +228,8 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--terracotta); ou
 .dark .scrap-contact { color: #fff7e9; background: #6e3827; }
 .dark .scrap-footer { background: #171210; }
 
-@media (max-width: 980px) {
+@media (max-width: 1080px) {
+  html { --scroll-offset: 76px; }
   .scrap-header { height: 76px; }
   .scrap-nav { gap: 20px; }
   .scrap-hero { min-height: 1050px; }
@@ -301,5 +303,6 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--terracotta); ou
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto !important; }
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
 }

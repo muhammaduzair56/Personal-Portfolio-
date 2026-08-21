@@ -10,7 +10,7 @@
 - [x] Push the latest portfolio after the refreshed connection is confirmed.
 - [x] Replace the project-specific portrait URL with a Vercel-compatible public image path.
 - [x] Push the portrait fix to GitHub so Vercel redeploys the corrected site.
-- [ ] Confirm the deployed portfolio renders the portrait correctly.
+- [x] Confirm the deployed portfolio renders the portrait correctly.
 - [x] Replace all portfolio LinkedIn references with the newly provided profile URL.
 - [x] Push the LinkedIn profile update to GitHub for Vercel redeployment.
 - [x] Add accurate SkillSense and The Burger House project entries using the supplied live sites.
@@ -25,13 +25,13 @@
 - [x] Preserve the user’s selected theme and support system color preference on first visit.
 - [x] Refine dark surfaces, contrast, and responsive controls across the portfolio.
 - [x] Validate both themes on mobile and desktop, then push the update to GitHub.
-- [ ] Create a standalone editorial portfolio design mockup without changing the deployed implementation.
-- [ ] Generate distinct portfolio layout concepts for visual selection without changing the live site.
-- [ ] Refine the selected Gallery Ledger concept into a more premium editorial mockup without changing the live site.
-- [ ] Create a radically different, high-impact portfolio concept outside the prior editorial website layouts.
-- [ ] Generate two balanced, practical premium portfolio concepts for selection without changing the live site.
-- [ ] Create the requested hand-crafted portfolio landing-page mockup without changing the live site.
-- [ ] Create the requested modern bento-grid portfolio mockup without changing the live site.
+- [x] Create a standalone editorial portfolio design mockup without changing the deployed implementation.
+- [x] Generate distinct portfolio layout concepts for visual selection without changing the live site.
+- [x] Refine the selected Gallery Ledger concept into a more premium editorial mockup without changing the live site.
+- [x] Create a radically different, high-impact portfolio concept outside the prior editorial website layouts.
+- [x] Generate two balanced, practical premium portfolio concepts for selection without changing the live site.
+- [x] Create the requested hand-crafted portfolio landing-page mockup without changing the live site.
+- [x] Create the requested modern bento-grid portfolio mockup without changing the live site.
 - [x] Rebuild the portfolio around the supplied scrapbook reference while retaining Muhammad Uzair’s real content.
 - [x] Adapt the scrapbook layout for phone screens without losing hierarchy or readability.
 - [x] Validate the rebuilt design against the supplied reference and publish it to GitHub.
@@ -53,3 +53,9 @@
 - [x] Prevent compact mobile and tablet browser widths from rendering the shrunken desktop hero layout.
 - [x] Correct responsive portrait, project-card, About, and email-row sizing at intermediate widths.
 - [x] Verify and publish the responsive breakpoint correction to GitHub.
+- [x] Add smooth scrolling to section navigation links with sticky-header offset handling.
+- [x] Respect reduced-motion preferences and validate smooth scrolling on mobile and desktop.
+- [x] Publish the smooth-scroll enhancement to GitHub.
+- [x] Test section-navigation clicks on a mobile viewport and confirm target sections land below the sticky header.
+- [x] Simulate prefers-reduced-motion and verify navigation uses a non-animated jump without layout regressions.
+
