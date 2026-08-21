@@ -72,3 +72,6 @@
 - [x] Test that the event fires only for post-navigation drawer closures and publish the analytics enhancement.
 - [x] Confirm no analytics event fires when the drawer closes without navigation.
 - [x] Commit, push, and checkpoint the analytics enhancement.
+- [x] Define a privacy-conscious section funnel for mobile-drawer navigation and post-navigation engagement.
+- [x] Implement and test section funnel events without collecting personal data.
+- [ ] Publish the verified section funnel analytics enhancement to GitHub and save a checkpoint.

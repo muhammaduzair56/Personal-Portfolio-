@@ -2,7 +2,7 @@
  * Scrapbook portfolio reference: warm handmade-paper canvas, handwritten annotations,
  * portrait-led hero, polaroid projects, and sticky-note skills.
  */
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -57,14 +57,22 @@ export function getDrawerCloseEvent(section: string, progress: number, path = ""
   };
 }
 
-function trackDrawerCloseAfterNavigation(section: string, progress: number) {
+export function getSectionFunnelEvent(stage: "drawer_navigation" | "section_reached" | "section_engaged", section: string, progress = 0) {
+  return {
+    event: "mobile_section_funnel",
+    stage,
+    section,
+    progress,
+  };
+}
+
+function trackAnalyticsEvent(eventName: string, data: Record<string, string | number>) {
   if (typeof window === "undefined" || typeof navigator === "undefined") return;
-  const event = getDrawerCloseEvent(section, progress, window.location.pathname);
   const umami = (window as Window & {
-    umami?: { track: (eventName: string, data: { section: string; progress: number }) => void };
+    umami?: { track: (eventName: string, data: Record<string, string | number>) => void };
   }).umami;
   if (umami?.track) {
-    umami.track(event.event, { section: event.section, progress: event.progress });
+    umami.track(eventName, data);
     return;
   }
   if (!analyticsEndpoint) return;
@@ -74,10 +82,10 @@ function trackDrawerCloseAfterNavigation(section: string, progress: number) {
     payload: {
       website: analyticsWebsiteId,
       hostname: window.location.hostname,
-      url: event.path,
+      url: window.location.pathname,
       title: document.title,
-      event_name: event.event,
-      data: { section: event.section, progress: event.progress },
+      event_name: eventName,
+      data,
     },
   });
   try {
@@ -99,13 +107,38 @@ export default function Home() {
   const [emailCopied, setEmailCopied] = useState(false);
   const [activeSection, setActiveSection] = useState("");
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [pendingFunnelSection, setPendingFunnelSection] = useState("");
+  const funnelReachedRef = useRef(false);
+  const funnelEngagedRef = useRef(false);
   const { theme, toggleTheme } = useTheme();
   const closeMenu = () => setMenuOpen(false);
   const handleNavClick = (sectionId: string) => {
-    if (menuOpen) trackDrawerCloseAfterNavigation(sectionId, scrollProgress);
+    if (menuOpen) {
+      const closeEvent = getDrawerCloseEvent(sectionId, scrollProgress, window.location.pathname);
+      trackAnalyticsEvent(closeEvent.event, { section: closeEvent.section, progress: closeEvent.progress });
+      const funnelEvent = getSectionFunnelEvent("drawer_navigation", sectionId, scrollProgress);
+      trackAnalyticsEvent(funnelEvent.event, { stage: funnelEvent.stage, section: funnelEvent.section, progress: funnelEvent.progress });
+      funnelReachedRef.current = false;
+      funnelEngagedRef.current = false;
+      setPendingFunnelSection(sectionId);
+    }
     setActiveSection(sectionId);
     closeMenu();
   };
+
+  useEffect(() => {
+    if (!pendingFunnelSection || activeSection !== pendingFunnelSection || funnelReachedRef.current) return;
+    funnelReachedRef.current = true;
+    const reachedEvent = getSectionFunnelEvent("section_reached", pendingFunnelSection, scrollProgress);
+    trackAnalyticsEvent(reachedEvent.event, { stage: reachedEvent.stage, section: reachedEvent.section, progress: reachedEvent.progress });
+    const timer = window.setTimeout(() => {
+      if (activeSection !== pendingFunnelSection || funnelEngagedRef.current) return;
+      funnelEngagedRef.current = true;
+      const engagedEvent = getSectionFunnelEvent("section_engaged", pendingFunnelSection, scrollProgress);
+      trackAnalyticsEvent(engagedEvent.event, { stage: engagedEvent.stage, section: engagedEvent.section, progress: engagedEvent.progress });
+    }, 4000);
+    return () => window.clearTimeout(timer);
+  }, [activeSection, pendingFunnelSection]);
 
   useEffect(() => {
     const sections = navItems

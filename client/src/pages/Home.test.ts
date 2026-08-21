@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { getActiveSection, getDrawerCloseEvent, getScrollProgress } from "./Home";
+import { getActiveSection, getDrawerCloseEvent, getScrollProgress, getSectionFunnelEvent } from "./Home";
 
 describe("getActiveSection", () => {
   const sections = [
@@ -28,6 +28,19 @@ describe("getDrawerCloseEvent", () => {
       progress: 43,
       path: "/",
     });
+  });
+});
+
+describe("getSectionFunnelEvent", () => {
+  it("creates stable navigation, reached, and engaged funnel stages", () => {
+    expect(getSectionFunnelEvent("drawer_navigation", "skills", 50)).toEqual({
+      event: "mobile_section_funnel",
+      stage: "drawer_navigation",
+      section: "skills",
+      progress: 50,
+    });
+    expect(getSectionFunnelEvent("section_reached", "skills", 52).stage).toBe("section_reached");
+    expect(getSectionFunnelEvent("section_engaged", "skills", 60).stage).toBe("section_engaged");
   });
 });
 
