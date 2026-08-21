@@ -44,6 +44,8 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--terracotta); ou
 .scrap-nav a:hover, .scrap-nav a.is-active { color: var(--terracotta); }
 .scrap-nav a.is-active::after { transform: scaleX(1); }
 .mobile-email { display: none; }
+.mobile-nav-shell, .mobile-nav-links { display: contents; }
+.mobile-progress-label { display: none; }
 .header-actions { display: flex; align-items: center; gap: 10px; }
 .scrap-connect, .ink-button { display: inline-flex; align-items: center; justify-content: center; gap: 9px; min-height: 46px; padding: 0 22px; color: #fff; background: var(--ink); border: 1px solid var(--ink); border-radius: 7px; font-size: .76rem; font-weight: 700; letter-spacing: .02em; text-transform: uppercase; transition: transform 160ms var(--ease-out), background 160ms var(--ease-out); }
 .scrap-connect:hover, .ink-button:hover { background: var(--terracotta); border-color: var(--terracotta); }
@@ -252,6 +254,11 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--terracotta); ou
   .scrap-nav { display: none; }
   .scrap-nav.open { display: flex; position: fixed; top: 70px; left: 0; right: 0; padding: 10px 22px 20px; flex-direction: column; align-items: stretch; gap: 0; background: var(--paper); border-bottom: 1px solid var(--line); box-shadow: 0 12px 24px rgba(55,38,23,.11); }
   .scrap-nav.open a { display: flex; align-items: center; min-height: 48px; border-bottom: 1px dashed var(--line); font-size: .86rem; }
+  .scrap-nav.open .mobile-nav-shell { display: flex; align-items: stretch; gap: 12px; }
+  .scrap-nav.open .mobile-nav-links { display: block; flex: 1; min-width: 0; }
+  .mobile-progress-rail { flex: 0 0 4px; width: 4px; margin: 4px 0 12px; overflow: hidden; border-radius: 999px; background: rgba(185,97,64,.18); }
+  .mobile-progress-rail span { display: block; width: 100%; min-height: 2px; border-radius: inherit; background: var(--terracotta); transition: height 180ms var(--ease-out); }
+  .mobile-progress-label { display: block; margin: 9px 0 0 16px; color: var(--ink-soft); font: 600 1rem/1 "Caveat", cursive; text-align: right; }
   .scrap-nav.open a.is-active { color: var(--terracotta); }
   .scrap-nav.open a.is-active::after { right: auto; bottom: 10px; width: 42px; transform: scaleX(1); }
   .scrap-nav.open .mobile-email { justify-content: space-between; color: var(--terracotta); }
@@ -308,5 +315,6 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--terracotta); ou
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto !important; }
+  .mobile-progress-rail span { transition: none !important; }
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
 }

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { getActiveSection } from "./Home";
+import { getActiveSection, getScrollProgress } from "./Home";
 
 describe("getActiveSection", () => {
   const sections = [
@@ -17,5 +17,20 @@ describe("getActiveSection", () => {
     expect(getActiveSection(sections, 500)).toBe("projects");
     expect(getActiveSection(sections, 900)).toBe("skills");
     expect(getActiveSection(sections, 1400)).toBe("contact");
+  });
+});
+
+describe("getScrollProgress", () => {
+  it("returns zero when the page has no scrollable height", () => {
+    expect(getScrollProgress(0, 800, 800)).toBe(0);
+  });
+
+  it("clamps scroll progress between zero and one hundred", () => {
+    expect(getScrollProgress(-20, 800, 1800)).toBe(0);
+    expect(getScrollProgress(1200, 800, 1800)).toBe(100);
+  });
+
+  it("returns the current percentage through the scrollable page", () => {
+    expect(getScrollProgress(500, 800, 1800)).toBe(50);
   });
 });

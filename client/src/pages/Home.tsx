@@ -40,10 +40,17 @@ export function getActiveSection(sections: Array<{ id: string; offsetTop: number
     .reduce((current, section) => section.offsetTop <= marker ? section.id : current, fallback);
 }
 
+export function getScrollProgress(scrollY: number, viewportHeight: number, documentHeight: number) {
+  const scrollableHeight = Math.max(documentHeight - viewportHeight, 0);
+  if (scrollableHeight === 0) return 0;
+  return Math.round(Math.min(Math.max(scrollY / scrollableHeight, 0), 1) * 100);
+}
+
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [emailCopied, setEmailCopied] = useState(false);
   const [activeSection, setActiveSection] = useState("");
+  const [scrollProgress, setScrollProgress] = useState(0);
   const { theme, toggleTheme } = useTheme();
   const closeMenu = () => setMenuOpen(false);
 
@@ -56,7 +63,9 @@ export default function Home() {
       const scrollOffset = Number.parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--scroll-offset")) || 88;
       const marker = window.scrollY + scrollOffset + Math.min(window.innerHeight * 0.22, 160);
       const current = getActiveSection(sections, marker);
+      const progress = getScrollProgress(window.scrollY, window.innerHeight, document.documentElement.scrollHeight);
       setActiveSection((previous) => previous === current ? previous : current);
+      setScrollProgress((previous) => previous === progress ? previous : progress);
     };
 
     updateActiveSection();
@@ -85,6 +94,18 @@ export default function Home() {
         </a>
 
         <nav className={menuOpen ? "scrap-nav open" : "scrap-nav"} aria-label="Main navigation">
+          <div className="mobile-nav-shell">
+            <div
+              className="mobile-progress-rail"
+              role="progressbar"
+              aria-label={`Page scroll progress: ${scrollProgress}%`}
+              aria-valuemin={0}
+              aria-valuemax={100}
+              aria-valuenow={scrollProgress}
+            >
+              <span style={{ height: `${scrollProgress}%` }} />
+            </div>
+            <div className="mobile-nav-links">
           {navItems.map(([label, href]) => {
             const sectionId = href.slice(1);
             const isActive = activeSection === sectionId;
@@ -97,6 +118,9 @@ export default function Home() {
             >{label}</a>;
           })}
           <a className="mobile-email" href="#contact" onClick={closeMenu}>Contact details <ArrowUpRight size={16} /></a>
+            </div>
+          </div>
+          <span className="mobile-progress-label">{scrollProgress}% of the page</span>
         </nav>
 
         <div className="header-actions">

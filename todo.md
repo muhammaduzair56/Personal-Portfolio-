@@ -64,3 +64,6 @@
 - [x] Fix top-of-page active state so the hero does not incorrectly highlight About.
 - [x] Validate active navigation changes through the tracked sections on desktop and mobile interactions.
 - [x] Publish the active-navigation enhancement to GitHub.
+- [x] Add a visual scroll-position progress indicator to the mobile navigation drawer alongside the active section item.
+- [x] Add accessible progress semantics, responsive scrapbook styling, and unit coverage for the progress calculation.
+- [ ] Validate the mobile drawer indicator and publish the enhancement to GitHub.
