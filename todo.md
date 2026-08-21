@@ -63,4 +63,4 @@
 - [x] Add accessible active-link semantics and validate scroll tracking across responsive layouts.
 - [x] Fix top-of-page active state so the hero does not incorrectly highlight About.
 - [x] Validate active navigation changes through the tracked sections on desktop and mobile interactions.
-- [ ] Publish the active-navigation enhancement to GitHub.
+- [x] Publish the active-navigation enhancement to GitHub.
