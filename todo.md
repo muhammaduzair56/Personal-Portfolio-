@@ -41,3 +41,6 @@
 - [x] Validate and publish the mobile and project-card corrections to GitHub.
 - [x] Correct low-contrast dark-theme headings, supporting text, fact-card labels, and section rules.
 - [x] Verify dark-mode readability on a phone and publish the contrast correction to GitHub.
+- [x] Create a crisp MU favicon aligned with the warm scrapbook brand system.
+- [x] Add the favicon and browser metadata links to the portfolio head.
+- [x] Validate and publish the favicon update to GitHub.

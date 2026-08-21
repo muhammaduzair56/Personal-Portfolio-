@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="MU monogram">
+  <rect width="64" height="64" rx="15" fill="#28201d"/>
+  <path d="M13 46V18h8.2L32 33.8 42.8 18H51v28h-7.8V30.7L34.7 43h-5.4l-8.5-12.3V46H13Z" fill="#fff8ed"/>
+  <path d="M48.8 14.2c4.4 2.1 7.1 5.9 8.1 11.3" fill="none" stroke="#df8862" stroke-linecap="round" stroke-width="3"/>
+  <circle cx="52.2" cy="13.7" r="2.8" fill="#df8862"/>
+</svg>
