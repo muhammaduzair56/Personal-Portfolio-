@@ -33,21 +33,21 @@ const featuredProjects = [
     type: "AI career platform",
     note: "Resume intelligence & career guidance",
     url: "https://skillsensepk.vercel.app/",
-    thumbnail: "skill",
+    image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663898260788/QfhhWBumBbqbJfzk.webp",
   },
   {
     title: "The Burger House",
     type: "Interactive 3D experience",
     note: "React Three Fiber & GSAP",
     url: "https://premiumburger.vercel.app/",
-    thumbnail: "burger",
+    image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1200&q=85",
   },
   {
     title: "E-Commerce Platform",
     type: "Full stack storefront",
     note: "Payments, cart & dashboard",
     url: "https://e-commerce-mu-wheat-87.vercel.app/",
-    thumbnail: "commerce",
+    image: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663898260788/kpnEUdeCIKGlaWEB.webp",
   },
 ];
 
@@ -58,11 +58,23 @@ const projectIndex = [
 ];
 
 const skills = ["React", "Next.js", "TypeScript", "Tailwind CSS", "Python", "FastAPI", "PostgreSQL", "Groq API", "Gemini API", "Docker", "Vercel", "Git"];
+const emailAddress = "uzairkhilji307@gmail.com";
+const gmailComposeUrl = "https://mail.google.com/mail/?view=cm&fs=1&to=uzairkhilji307%40gmail.com";
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [emailCopied, setEmailCopied] = useState(false);
   const { theme, toggleTheme } = useTheme();
   const closeMenu = () => setMenuOpen(false);
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(emailAddress);
+      setEmailCopied(true);
+      window.setTimeout(() => setEmailCopied(false), 2200);
+    } catch {
+      window.location.href = gmailComposeUrl;
+    }
+  };
 
   return (
     <div className="scrapbook-page">
@@ -73,7 +85,7 @@ export default function Home() {
 
         <nav className={menuOpen ? "scrap-nav open" : "scrap-nav"} aria-label="Main navigation">
           {navItems.map(([label, href]) => <a href={href} key={label} onClick={closeMenu}>{label}</a>)}
-          <a className="mobile-email" href="mailto:uzairkhilji307@gmail.com" onClick={closeMenu}>Email me <ArrowUpRight size={16} /></a>
+          <a className="mobile-email" href="#contact" onClick={closeMenu}>Contact details <ArrowUpRight size={16} /></a>
         </nav>
 
         <div className="header-actions">
@@ -86,7 +98,7 @@ export default function Home() {
           >
             {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
           </button>
-          <a className="scrap-connect" href="mailto:uzairkhilji307@gmail.com">Let&apos;s connect</a>
+          <a className="scrap-connect" href="#contact">Let&apos;s connect</a>
           <button className="scrap-menu" type="button" aria-label="Toggle navigation" aria-expanded={menuOpen} onClick={() => setMenuOpen((open) => !open)}>
             {menuOpen ? <X size={25} /> : <Menu size={27} />}
           </button>
@@ -102,7 +114,7 @@ export default function Home() {
               <p className="scrap-intro">Full Stack Developer and AI Developer crafting useful web applications and practical AI-powered products.</p>
               <div className="scrap-hero-actions">
                 <a className="ink-button" href="#projects">View my work <ArrowRight size={18} /></a>
-                <a className="hand-link" href="mailto:uzairkhilji307@gmail.com">Let&apos;s talk <ArrowUpRight size={18} /></a>
+                <a className="hand-link" href="#contact">Let&apos;s talk <ArrowUpRight size={18} /></a>
               </div>
               <div className="social-scribbles">
                 <a href="https://github.com/ucdexpert" target="_blank" rel="noreferrer"><Github size={17} /> GitHub</a>
@@ -123,8 +135,9 @@ export default function Home() {
             <div className="polaroid-row">
               {featuredProjects.map((project, index) => (
                 <article className={`polaroid polaroid-${index + 1}`} key={project.title}>
-                  <div className={`mini-project-screen mini-${project.thumbnail}`} aria-hidden="true">
-                    <span>{project.thumbnail === "skill" ? "AI / CAREER" : project.thumbnail === "burger" ? "TASTE / STORY" : "SHOP / BUILD"}</span>
+                  <div className="mini-project-screen">
+                    <img src={project.image} alt={`${project.title} live project preview`} loading="lazy" decoding="async" />
+                    <span>{project.type}</span>
                     <b>{project.title}</b>
                   </div>
                   <h2>{project.title}</h2>
@@ -154,7 +167,7 @@ export default function Home() {
           <div className="about-facts">
             <div><MapPin size={18} /><span>Based in</span><strong>Karachi, Pakistan</strong></div>
             <div><Sparkles size={18} /><span>Available for</span><strong>Freelance &amp; full-time roles</strong></div>
-            <div><Mail size={18} /><span>Say hello</span><a href="mailto:uzairkhilji307@gmail.com">uzairkhilji307@gmail.com</a></div>
+            <div><Mail size={18} /><span>Say hello</span><button className="email-copy-link" type="button" onClick={copyEmail}>{emailCopied ? "Email copied" : emailAddress}</button></div>
           </div>
         </section>
 
@@ -175,7 +188,10 @@ export default function Home() {
         <section id="contact" className="scrap-contact">
           <p className="hand-kicker">Let&apos;s make something useful</p>
           <h2>Have an idea worth building?</h2>
-          <a className="ink-button" href="mailto:uzairkhilji307@gmail.com">Start a conversation <ArrowRight size={18} /></a>
+          <div className="contact-cta-row">
+            <button className="ink-button" type="button" onClick={copyEmail}>{emailCopied ? "Email copied" : "Copy email address"} <Mail size={17} /></button>
+            <a className="gmail-link" href={gmailComposeUrl} target="_blank" rel="noreferrer">Open Gmail <ArrowUpRight size={17} /></a>
+          </div>
         </section>
       </main>
 

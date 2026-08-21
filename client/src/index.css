@@ -81,12 +81,12 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--terracotta); ou
 .polaroid-1 { transform: rotate(-3.2deg); }
 .polaroid-2 { transform: rotate(-.8deg) translateY(-4px); }
 .polaroid-3 { transform: rotate(2.1deg) translateY(3px); }
-.mini-project-screen { display: flex; flex-direction: column; justify-content: space-between; min-height: 126px; padding: 13px; color: white; overflow: hidden; }
-.mini-project-screen span { font-size: .52rem; font-weight: 700; letter-spacing: .12em; }
-.mini-project-screen b { max-width: 130px; font-size: clamp(.9rem, 1.22vw, 1.2rem); line-height: 1; }
-.mini-skill { background: linear-gradient(145deg, #0c1b2c 0%, #174a47 100%); }
-.mini-burger { background: linear-gradient(145deg, #2f1812 0%, #c16936 48%, #f0b951 100%); }
-.mini-commerce { background: linear-gradient(145deg, #1d2737 0%, #5d7192 100%); }
+.mini-project-screen { position: relative; display: flex; flex-direction: column; justify-content: space-between; min-height: 126px; padding: 13px; color: white; overflow: hidden; background: #20201f; isolation: isolate; }
+.mini-project-screen::after { content: ""; position: absolute; z-index: -1; inset: 0; background: linear-gradient(180deg, rgba(13,12,11,.06) 20%, rgba(13,12,11,.88) 100%); }
+.mini-project-screen img { position: absolute; z-index: -2; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; transition: transform 260ms var(--ease-out); }
+.polaroid:hover .mini-project-screen img { transform: scale(1.06); }
+.mini-project-screen span { max-width: max-content; padding: 4px 6px; background: rgba(20,18,16,.7); font-size: .5rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.mini-project-screen b { max-width: 145px; font-size: clamp(.9rem, 1.22vw, 1.2rem); line-height: 1; text-shadow: 0 1px 7px rgba(0,0,0,.5); }
 .polaroid h2 { margin: 10px 0 2px; font-size: clamp(.9rem, 1.1vw, 1.1rem); line-height: 1.05; }
 .polaroid p { min-height: 29px; margin: 0; color: var(--ink-soft); font-size: .63rem; line-height: 1.25; }
 .polaroid a { display: inline-flex; align-items: center; gap: 5px; margin-top: 7px; border-bottom: 1px solid currentColor; font: 600 1rem/1 "Caveat", cursive; }
@@ -114,6 +114,8 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--terracotta); ou
 .about-facts span { color: var(--ink-soft); font-size: .74rem; }
 .about-facts strong, .about-facts a { font-size: .81rem; }
 .about-facts a { color: var(--terracotta-deep); overflow-wrap: anywhere; }
+.email-copy-link { padding: 0; border: 0; color: var(--terracotta-deep); background: transparent; text-align: left; overflow-wrap: anywhere; font: inherit; cursor: pointer; }
+.email-copy-link:hover { text-decoration: underline; }
 
 .project-index { display: grid; grid-template-columns: minmax(290px,.7fr) minmax(0,1.3fr); gap: clamp(40px, 9vw, 130px); border-top: 1px solid var(--line); }
 .index-heading { position: sticky; top: 110px; align-self: start; }
@@ -132,6 +134,9 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--terracotta); ou
 .scrap-contact h2 { position: relative; z-index: 1; margin-inline: auto; }
 .scrap-contact .ink-button { position: relative; z-index: 1; color: var(--ink); background: #fff8ed; border-color: #fff8ed; }
 .scrap-contact .ink-button:hover { color: #fff8ed; background: var(--ink); border-color: var(--ink); }
+.contact-cta-row { position: relative; z-index: 1; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 24px; }
+.gmail-link { display: inline-flex; align-items: center; gap: 7px; border-bottom: 2px solid currentColor; padding-bottom: 3px; color: #fff8ed; font: 600 1.25rem/1 "Caveat", cursive; }
+.gmail-link:hover { color: var(--ink); }
 .scrap-footer { display: flex; justify-content: space-between; gap: 20px; padding: 24px clamp(24px, 5vw, 84px); color: #d4c6b5; background: var(--ink); font-size: .72rem; }
 .scrap-footer a { color: #fff8ed; }
 
@@ -183,11 +188,11 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--terracotta); ou
   .ink-button { min-height: 47px; padding: 0 17px; font-size: .72rem; }
   .hand-link { font-size: 1.22rem; }
   .social-scribbles { margin-top: 23px; }
-  .scrap-portrait { width: 100%; min-height: 450px; }
-  .portrait-brush { top: 32px; bottom: 4px; }
-  .scrap-portrait img { right: 50%; width: min(107%, 500px); height: 100%; transform: translateX(50%); }
-  .scrap-portrait figcaption { top: 87px; right: 2%; max-width: 106px; font-size: 1.25rem; }
-  .portrait-arrow { top: 21px; left: 3%; font-size: 3.9rem; }
+  .scrap-portrait { width: 100%; min-height: 350px; max-height: 370px; }
+  .portrait-brush { top: 18px; right: 5%; bottom: 22px; left: 5%; }
+  .scrap-portrait img { right: 50%; width: 86%; height: 88%; transform: translateX(50%); object-fit: cover; object-position: center 19%; border: 6px solid #fbf7ee; box-shadow: 0 12px 22px rgba(55,38,23,.16); }
+  .scrap-portrait figcaption { top: 28px; right: 4%; max-width: 103px; font-size: 1.12rem; }
+  .portrait-arrow { top: 3px; left: 7%; font-size: 3.25rem; }
   .scrap-featured, .skills-tear { position: static; width: auto; margin-top: 35px; }
   .scrap-featured { padding-top: 9px; }
   .polaroid-row { display: flex; overflow-x: auto; gap: 18px; margin-right: -18px; padding: 9px 18px 20px 6px; scroll-snap-type: x mandatory; }
@@ -211,6 +216,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--terracotta); ou
   .index-project p { font-size: .73rem; }
   .scrap-contact { text-align: left; }
   .scrap-contact h2 { margin-left: 0; }
+  .contact-cta-row { justify-content: flex-start; gap: 19px; }
   .scrap-footer { padding: 20px; font-size: .66rem; }
   .dark .scrap-header { background: rgba(37,30,27,.95); }
 }

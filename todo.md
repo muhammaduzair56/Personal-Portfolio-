@@ -35,3 +35,7 @@
 - [x] Rebuild the portfolio around the supplied scrapbook reference while retaining Muhammad Uzair’s real content.
 - [x] Adapt the scrapbook layout for phone screens without losing hierarchy or readability.
 - [x] Validate the rebuilt design against the supplied reference and publish it to GitHub.
+- [x] Reduce the oversized mobile portrait treatment while keeping the scrapbook visual language.
+- [x] Replace browser-breaking mailto interactions with a mobile-safe email action.
+- [x] Add real visual thumbnails for SkillSense, The Burger House, and E-Commerce Platform.
+- [x] Validate and publish the mobile and project-card corrections to GitHub.
