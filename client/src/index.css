@@ -1,4 +1,5 @@
 /* Scrapbook reference system: warm handmade-paper surfaces, ink typography, terracotta emphasis, and friendly handwritten annotations. */
+/* Scrapbook reference system: warm handmade-paper surfaces, ink typography, terracotta emphasis, and friendly handwritten annotations. */
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
@@ -140,13 +141,22 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--terracotta); ou
 .scrap-footer { display: flex; justify-content: space-between; gap: 20px; padding: 24px clamp(24px, 5vw, 84px); color: #d4c6b5; background: var(--ink); font-size: .72rem; }
 .scrap-footer a { color: #fff8ed; }
 
-.dark .scrapbook-page { --paper: #251e1b; --paper-deep: #30251f; --ink: #f9eee2; --ink-soft: #d5c5b5; --terracotta: #d57b55; --terracotta-deep: #e89971; --line: rgba(255,240,222,.22); --shadow: 0 13px 20px rgba(0,0,0,.36); }
+.dark body { background: #201a18; }
+.dark .scrapbook-page { --paper: #251e1b; --paper-deep: #30251f; --ink: #fff7ec; --ink-soft: #e5d7ca; --terracotta: #e18a64; --terracotta-deep: #f3a27d; --line: rgba(255,240,222,.3); --shadow: 0 13px 20px rgba(0,0,0,.36); color: #fff7ec; }
 .dark .scrap-header { background: rgba(37,30,27,.92); }
+.dark .scrapbook-page .scrap-copy h1, .dark .scrapbook-page .about-note h2, .dark .scrapbook-page .project-index h2, .dark .scrapbook-page .index-project h3 { color: #fff9f0; }
+.dark .scrapbook-page .scrap-intro, .dark .scrapbook-page .about-note > p:last-child, .dark .scrapbook-page .index-project p, .dark .scrapbook-page .social-scribbles a { color: #e4d5c7; }
+.dark .scrapbook-page .index-list { border-color: rgba(255,247,236,.72); }
+.dark .scrapbook-page .index-project { border-color: rgba(255,247,236,.29); }
+.dark .scrapbook-page .index-project > span { color: #f0a17a; }
 .dark .scrap-connect, .dark .ink-button { color: #241d1a; background: #fff6e9; border-color: #fff6e9; }
 .dark .scrap-connect:hover, .dark .ink-button:hover { color: white; background: var(--terracotta); border-color: var(--terracotta); }
 .dark .portrait-brush { background: #46372f; }
 .dark .scrap-portrait figcaption { color: #f8eadc; }
 .dark .polaroid, .dark .skills-tear, .dark .about-facts { color: #30241e; background: #f8f1e4; }
+.dark .about-facts span { color: #8a7263; }
+.dark .about-facts strong, .dark .about-facts .email-copy-link { color: #33261f; }
+.dark .about-facts svg { color: #b96545; }
 .dark .scrap-about { background: rgba(31,24,21,.52); }
 .dark .scrap-contact { color: #fff7e9; background: #6e3827; }
 .dark .scrap-footer { background: #171210; }

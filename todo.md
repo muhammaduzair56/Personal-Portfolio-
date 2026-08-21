@@ -39,3 +39,5 @@
 - [x] Replace browser-breaking mailto interactions with a mobile-safe email action.
 - [x] Add real visual thumbnails for SkillSense, The Burger House, and E-Commerce Platform.
 - [x] Validate and publish the mobile and project-card corrections to GitHub.
+- [x] Correct low-contrast dark-theme headings, supporting text, fact-card labels, and section rules.
+- [x] Verify dark-mode readability on a phone and publish the contrast correction to GitHub.
