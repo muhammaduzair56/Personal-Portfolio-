@@ -2,7 +2,7 @@
  * Scrapbook portfolio reference: warm handmade-paper canvas, handwritten annotations,
  * portrait-led hero, polaroid projects, and sticky-note skills.
  */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -34,11 +34,39 @@ const emailAddress = "uzairkhilji307@gmail.com";
 const gmailComposeUrl = "https://mail.google.com/mail/?view=cm&fs=1&to=uzairkhilji307%40gmail.com";
 const resumeUrl = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663898260788/amHTbobdWemnQKFg.pdf";
 
+export function getActiveSection(sections: Array<{ id: string; offsetTop: number }>, marker: number, fallback = "") {
+  return [...sections]
+    .sort((a, b) => a.offsetTop - b.offsetTop)
+    .reduce((current, section) => section.offsetTop <= marker ? section.id : current, fallback);
+}
+
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [emailCopied, setEmailCopied] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
   const { theme, toggleTheme } = useTheme();
   const closeMenu = () => setMenuOpen(false);
+
+  useEffect(() => {
+    const sections = navItems
+      .map(([, href]) => document.getElementById(href.slice(1)))
+      .filter((section): section is HTMLElement => Boolean(section));
+
+    const updateActiveSection = () => {
+      const scrollOffset = Number.parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--scroll-offset")) || 88;
+      const marker = window.scrollY + scrollOffset + Math.min(window.innerHeight * 0.22, 160);
+      const current = getActiveSection(sections, marker);
+      setActiveSection((previous) => previous === current ? previous : current);
+    };
+
+    updateActiveSection();
+    window.addEventListener("scroll", updateActiveSection, { passive: true });
+    window.addEventListener("resize", updateActiveSection);
+    return () => {
+      window.removeEventListener("scroll", updateActiveSection);
+      window.removeEventListener("resize", updateActiveSection);
+    };
+  }, []);
   const copyEmail = async () => {
     try {
       await navigator.clipboard.writeText(emailAddress);
@@ -57,7 +85,17 @@ export default function Home() {
         </a>
 
         <nav className={menuOpen ? "scrap-nav open" : "scrap-nav"} aria-label="Main navigation">
-          {navItems.map(([label, href]) => <a href={href} key={label} onClick={closeMenu}>{label}</a>)}
+          {navItems.map(([label, href]) => {
+            const sectionId = href.slice(1);
+            const isActive = activeSection === sectionId;
+            return <a
+              href={href}
+              key={label}
+              className={isActive ? "is-active" : undefined}
+              aria-current={isActive ? "location" : undefined}
+              onClick={() => { setActiveSection(sectionId); closeMenu(); }}
+            >{label}</a>;
+          })}
           <a className="mobile-email" href="#contact" onClick={closeMenu}>Contact details <ArrowUpRight size={16} /></a>
         </nav>
 

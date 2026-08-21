@@ -59,3 +59,8 @@
 - [x] Test section-navigation clicks on a mobile viewport and confirm target sections land below the sticky header.
 - [x] Simulate prefers-reduced-motion and verify navigation uses a non-animated jump without layout regressions.
 
+- [x] Track the current section in view and expose an active navigation state on desktop and mobile.
+- [x] Add accessible active-link semantics and validate scroll tracking across responsive layouts.
+- [x] Fix top-of-page active state so the hero does not incorrectly highlight About.
+- [x] Validate active navigation changes through the tracked sections on desktop and mobile interactions.
+- [ ] Publish the active-navigation enhancement to GitHub.

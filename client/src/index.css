@@ -39,8 +39,10 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--terracotta); ou
 .scrap-wordmark { display: inline-flex; flex-direction: column; color: var(--ink); font: 700 clamp(1.55rem, 2.15vw, 2.3rem)/.8 "Caveat", cursive; transform: rotate(-2deg); }
 .scrap-wordmark span { width: 88%; height: 2px; margin: 6px 0 0 10%; background: var(--ink); transform: rotate(-3deg); }
 .scrap-nav { display: flex; align-items: center; gap: clamp(18px, 2.9vw, 42px); margin-left: auto; }
-.scrap-nav a { font-size: .78rem; font-weight: 700; letter-spacing: .02em; text-transform: uppercase; transition: color 160ms var(--ease-out); }
-.scrap-nav a:hover { color: var(--terracotta); }
+.scrap-nav a { position: relative; padding-bottom: 6px; font-size: .78rem; font-weight: 700; letter-spacing: .02em; text-transform: uppercase; transition: color 160ms var(--ease-out); }
+.scrap-nav a::after { content: ""; position: absolute; right: 0; bottom: 0; left: 0; height: 2px; background: var(--terracotta); transform: scaleX(0); transform-origin: left; transition: transform 180ms var(--ease-out); }
+.scrap-nav a:hover, .scrap-nav a.is-active { color: var(--terracotta); }
+.scrap-nav a.is-active::after { transform: scaleX(1); }
 .mobile-email { display: none; }
 .header-actions { display: flex; align-items: center; gap: 10px; }
 .scrap-connect, .ink-button { display: inline-flex; align-items: center; justify-content: center; gap: 9px; min-height: 46px; padding: 0 22px; color: #fff; background: var(--ink); border: 1px solid var(--ink); border-radius: 7px; font-size: .76rem; font-weight: 700; letter-spacing: .02em; text-transform: uppercase; transition: transform 160ms var(--ease-out), background 160ms var(--ease-out); }
@@ -250,6 +252,8 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--terracotta); ou
   .scrap-nav { display: none; }
   .scrap-nav.open { display: flex; position: fixed; top: 70px; left: 0; right: 0; padding: 10px 22px 20px; flex-direction: column; align-items: stretch; gap: 0; background: var(--paper); border-bottom: 1px solid var(--line); box-shadow: 0 12px 24px rgba(55,38,23,.11); }
   .scrap-nav.open a { display: flex; align-items: center; min-height: 48px; border-bottom: 1px dashed var(--line); font-size: .86rem; }
+  .scrap-nav.open a.is-active { color: var(--terracotta); }
+  .scrap-nav.open a.is-active::after { right: auto; bottom: 10px; width: 42px; transform: scaleX(1); }
   .scrap-nav.open .mobile-email { justify-content: space-between; color: var(--terracotta); }
   .scrap-connect { display: none; }
   .header-actions { margin-left: auto; }
