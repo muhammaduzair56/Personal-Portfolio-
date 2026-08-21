@@ -240,7 +240,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--terracotta); ou
   .index-heading { position: static; }
 }
 
-@media (max-width: 760px) {
+@media (max-width: 1080px) {
   html { scroll-padding-top: 72px; }
   .scrap-header { height: 70px; padding: 0 18px; gap: 10px; background: rgba(246,240,229,.95); position: sticky; top: 0; border-bottom: 1px solid var(--line); backdrop-filter: blur(12px); }
   .scrap-wordmark { font-size: 1.62rem; }
@@ -286,8 +286,9 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--terracotta); ou
   .scrap-about { display: block; }
   .about-note h2, .project-index h2, .scrap-contact h2 { font-size: clamp(2.55rem, 11vw, 3.9rem); }
   .about-facts { margin-top: 41px; padding: 18px; transform: rotate(.5deg); }
-  .about-facts > div { grid-template-columns: 25px 82px 1fr; }
+  .about-facts > div { grid-template-columns: 25px minmax(72px, 82px) minmax(0, 1fr); }
   .about-facts span, .about-facts strong, .about-facts a { font-size: .69rem; }
+  .about-facts strong, .about-facts .email-copy-link { overflow-wrap: anywhere; word-break: break-word; }
   .index-project { grid-template-columns: 36px minmax(0,1fr) 20px; min-height: 112px; gap: 10px; }
   .index-project h3 { font-size: 1rem; }
   .index-project p { font-size: .73rem; }
