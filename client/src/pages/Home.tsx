@@ -66,6 +66,16 @@ export function getSectionFunnelEvent(stage: "drawer_navigation" | "section_reac
   };
 }
 
+export function getContactCtaConversionEvent(section: string, cta: string, progress = 0) {
+  return {
+    event: "mobile_contact_cta_conversion",
+    stage: "section_engaged",
+    sourceSection: section,
+    cta,
+    progress,
+  };
+}
+
 function trackAnalyticsEvent(eventName: string, data: Record<string, string | number>) {
   if (typeof window === "undefined" || typeof navigator === "undefined") return;
   const umami = (window as Window & {
@@ -108,10 +118,28 @@ export default function Home() {
   const [activeSection, setActiveSection] = useState("");
   const [scrollProgress, setScrollProgress] = useState(0);
   const [pendingFunnelSection, setPendingFunnelSection] = useState("");
+  const activeSectionRef = useRef("");
   const funnelReachedRef = useRef(false);
   const funnelEngagedRef = useRef(false);
+  const contactConversionTrackedRef = useRef(false);
+  const funnelRunRef = useRef(0);
   const { theme, toggleTheme } = useTheme();
   const closeMenu = () => setMenuOpen(false);
+  const beginSectionFunnel = (sectionId: string, progress: number) => {
+    const runId = ++funnelRunRef.current;
+    window.setTimeout(() => {
+      if (runId !== funnelRunRef.current || window.location.hash !== `#${sectionId}`) return;
+      funnelReachedRef.current = true;
+      const reachedEvent = getSectionFunnelEvent("section_reached", sectionId, progress);
+      trackAnalyticsEvent(reachedEvent.event, { stage: reachedEvent.stage, section: reachedEvent.section, progress: reachedEvent.progress });
+      window.setTimeout(() => {
+        if (runId !== funnelRunRef.current || window.location.hash !== `#${sectionId}` || funnelEngagedRef.current) return;
+        funnelEngagedRef.current = true;
+        const engagedEvent = getSectionFunnelEvent("section_engaged", sectionId, progress);
+        trackAnalyticsEvent(engagedEvent.event, { stage: engagedEvent.stage, section: engagedEvent.section, progress: engagedEvent.progress });
+      }, 4000);
+    }, 250);
+  };
   const handleNavClick = (sectionId: string) => {
     if (menuOpen) {
       const closeEvent = getDrawerCloseEvent(sectionId, scrollProgress, window.location.pathname);
@@ -120,25 +148,15 @@ export default function Home() {
       trackAnalyticsEvent(funnelEvent.event, { stage: funnelEvent.stage, section: funnelEvent.section, progress: funnelEvent.progress });
       funnelReachedRef.current = false;
       funnelEngagedRef.current = false;
+      contactConversionTrackedRef.current = false;
       setPendingFunnelSection(sectionId);
+      beginSectionFunnel(sectionId, scrollProgress);
     }
+    activeSectionRef.current = sectionId;
     setActiveSection(sectionId);
     closeMenu();
   };
 
-  useEffect(() => {
-    if (!pendingFunnelSection || activeSection !== pendingFunnelSection || funnelReachedRef.current) return;
-    funnelReachedRef.current = true;
-    const reachedEvent = getSectionFunnelEvent("section_reached", pendingFunnelSection, scrollProgress);
-    trackAnalyticsEvent(reachedEvent.event, { stage: reachedEvent.stage, section: reachedEvent.section, progress: reachedEvent.progress });
-    const timer = window.setTimeout(() => {
-      if (activeSection !== pendingFunnelSection || funnelEngagedRef.current) return;
-      funnelEngagedRef.current = true;
-      const engagedEvent = getSectionFunnelEvent("section_engaged", pendingFunnelSection, scrollProgress);
-      trackAnalyticsEvent(engagedEvent.event, { stage: engagedEvent.stage, section: engagedEvent.section, progress: engagedEvent.progress });
-    }, 4000);
-    return () => window.clearTimeout(timer);
-  }, [activeSection, pendingFunnelSection]);
 
   useEffect(() => {
     const sections = navItems
@@ -157,6 +175,7 @@ export default function Home() {
         top: section.getBoundingClientRect().top + window.scrollY,
       }));
       const current = getActiveSection(positionedSections, marker);
+      activeSectionRef.current = current;
       const progress = getScrollProgress(window.scrollY, window.innerHeight, documentHeight);
       setActiveSection((previous) => previous === current ? previous : current);
       setScrollProgress((previous) => previous === progress ? previous : progress);
@@ -170,6 +189,18 @@ export default function Home() {
       window.removeEventListener("resize", updateActiveSection);
     };
   }, []);
+  const trackContactCta = (cta: string) => {
+    if (!funnelEngagedRef.current || contactConversionTrackedRef.current) return;
+    contactConversionTrackedRef.current = true;
+    const conversion = getContactCtaConversionEvent(pendingFunnelSection, cta, scrollProgress);
+    trackAnalyticsEvent(conversion.event, {
+      stage: conversion.stage,
+      sourceSection: conversion.sourceSection,
+      cta: conversion.cta,
+      progress: conversion.progress,
+    });
+  };
+
   const copyEmail = async () => {
     try {
       await navigator.clipboard.writeText(emailAddress);
@@ -227,7 +258,7 @@ export default function Home() {
           >
             {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
           </button>
-          <a className="scrap-connect" href="#contact">Let&apos;s connect</a>
+          <a className="scrap-connect" href="#contact" onClick={() => trackContactCta("header_connect")}>Let&apos;s connect</a>
           <button className="scrap-menu" type="button" aria-label="Toggle navigation" aria-expanded={menuOpen} onClick={() => setMenuOpen((open) => !open)}>
             {menuOpen ? <X size={25} /> : <Menu size={27} />}
           </button>
@@ -243,7 +274,7 @@ export default function Home() {
               <p className="scrap-intro">Full Stack Developer and AI Developer crafting useful web applications and practical AI-powered products.</p>
               <div className="scrap-hero-actions">
                 <a className="ink-button" href="#projects">View my work <ArrowRight size={18} /></a>
-                <a className="hand-link" href="#contact">Let&apos;s talk <ArrowUpRight size={18} /></a>
+                <a className="hand-link" href="#contact" onClick={() => trackContactCta("hero_talk")}>Let&apos;s talk <ArrowUpRight size={18} /></a>
               </div>
               <a className="resume-link" href={resumeUrl} target="_blank" rel="noreferrer" download="Muhammad-Uzair-Resume.pdf">
                 <Download size={17} /> Download Resume <span aria-hidden="true">↙</span>
@@ -321,8 +352,8 @@ export default function Home() {
           <p className="hand-kicker">Let&apos;s make something useful</p>
           <h2>Have an idea worth building?</h2>
           <div className="contact-cta-row">
-            <button className="ink-button" type="button" onClick={copyEmail}>{emailCopied ? "Email copied" : "Copy email address"} <Mail size={17} /></button>
-            <a className="gmail-link" href={gmailComposeUrl} target="_blank" rel="noreferrer">Open Gmail <ArrowUpRight size={17} /></a>
+            <button className="ink-button" type="button" onClick={() => { trackContactCta("contact_copy_email"); void copyEmail(); }}>{emailCopied ? "Email copied" : "Copy email address"} <Mail size={17} /></button>
+            <a className="gmail-link" href={gmailComposeUrl} target="_blank" rel="noreferrer" onClick={() => trackContactCta("contact_open_gmail")}>Open Gmail <ArrowUpRight size={17} /></a>
           </div>
         </section>
       </main>

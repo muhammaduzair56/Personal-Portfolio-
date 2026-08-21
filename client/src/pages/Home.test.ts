@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { getActiveSection, getDrawerCloseEvent, getScrollProgress, getSectionFunnelEvent } from "./Home";
+import { getActiveSection, getContactCtaConversionEvent, getDrawerCloseEvent, getScrollProgress, getSectionFunnelEvent } from "./Home";
 
 describe("getActiveSection", () => {
   const sections = [
@@ -41,6 +41,18 @@ describe("getSectionFunnelEvent", () => {
     });
     expect(getSectionFunnelEvent("section_reached", "skills", 52).stage).toBe("section_reached");
     expect(getSectionFunnelEvent("section_engaged", "skills", 60).stage).toBe("section_engaged");
+  });
+});
+
+describe("getContactCtaConversionEvent", () => {
+  it("creates a conversion payload tied to the engaged section stage", () => {
+    expect(getContactCtaConversionEvent("skills", "hero_talk", 61)).toEqual({
+      event: "mobile_contact_cta_conversion",
+      stage: "section_engaged",
+      sourceSection: "skills",
+      cta: "hero_talk",
+      progress: 61,
+    });
   });
 });
 

@@ -75,3 +75,5 @@
 - [x] Define a privacy-conscious section funnel for mobile-drawer navigation and post-navigation engagement.
 - [x] Implement and test section funnel events without collecting personal data.
 - [x] Publish the verified section funnel analytics enhancement to GitHub and save a checkpoint.
+- [x] Add a contact CTA conversion event gated by the mobile section_engaged funnel stage.
+- [x] Test engaged and non-engaged CTA paths, deduplicate the event, and publish the analytics enhancement.
